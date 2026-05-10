@@ -1,169 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Deals | USA Trending Products</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        .product-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
-        .active-page { background-color: #4f46e5 !important; color: white !important; }
-        .hidden { display: none; }
-    </style>
-</head>
-<body>
-
-<nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-        <span class="text-2xl font-black bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-transparent">MEGA DEALS</span>
-        <button onclick="showLogin()" id="adminBtn" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition">Admin Panel</button>
-    </div>
-</nav>
-
-<div id="loginModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-[100] px-4">
-    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6">Admin Access</h2>
-        <input type="password" id="adminPass" placeholder="Password" class="w-full border-2 p-3 rounded-xl mb-4 focus:border-indigo-500 outline-none">
-        <div class="flex gap-3">
-            <button onclick="closeLogin()" class="flex-1 py-3 text-gray-600 font-semibold">Cancel</button>
-            <button onclick="handleLogin()" class="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-bold">Login</button>
-        </div>
+<div class="mt-12 pt-8 border-t border-gray-100">
+    <h3 class="text-lg font-bold mb-4 text-gray-700">Security Settings</h3>
+    <div class="flex gap-4">
+        <input type="password" id="newPass" placeholder="Enter New Password" class="flex-1 p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
+        <button onclick="updatePassword()" class="bg-gray-800 text-white px-8 py-4 rounded-2xl font-bold hover:bg-black transition">Update Password</button>
     </div>
 </div>
-
-<div id="adminPanel" class="hidden max-w-7xl mx-auto mt-6 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-    <div class="flex justify-between items-center mb-6">
-        <h3 class="text-xl font-bold text-gray-800">Add New Product</h3>
-        <button onclick="logout()" class="text-red-500 text-sm font-bold">Logout</button>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <input type="text" id="pTitle" placeholder="Product Name" class="border p-3 rounded-xl text-sm">
-        <input type="text" id="pBtnText" placeholder="Button Name (e.g. Shop Now)" class="border p-3 rounded-xl text-sm">
-        <input type="text" id="pImage" placeholder="Image URL" class="border p-3 rounded-xl text-sm">
-        <input type="text" id="pLink" placeholder="Affiliate Link" class="border p-3 rounded-xl text-sm">
-    </div>
-    <button onclick="saveProduct()" class="w-full mt-4 bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700">Add to List</button>
-</div>
-
-<header class="py-12 text-center">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">Hand-Picked <span class="text-indigo-600">Viral</span> Products</h1>
-    <p class="text-gray-500 text-lg max-w-2xl mx-auto">Discover the most trending gadgets and lifestyle products in the USA. Updated every hour.</p>
-</header>
-
-<div class="max-w-7xl mx-auto px-4 pb-20">
-    <div id="mainGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        </div>
-
-    <div id="pagination" class="flex justify-center items-center mt-16 gap-2">
-        </div>
-</div>
-
-<footer class="bg-white border-t border-gray-200 py-10 text-center">
-    <p class="text-gray-400 text-sm">© 2024 Premium Affiliate Hub. All Rights Reserved.</p>
-    <div class="mt-4 flex justify-center gap-6 text-xs text-gray-400">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
-    </div>
-</footer>
 
 <script>
-    const PASS = "admin123";
-    let products = JSON.parse(localStorage.getItem('products')) || [];
-    let currentPage = 1;
-    const itemsPerPage = 20;
+// --- PASSWORD LOGIC ---
 
-    function showLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
-    function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
-    
-    function handleLogin() {
-        if(document.getElementById('adminPass').value === PASS) {
-            document.getElementById('adminPanel').classList.remove('hidden');
-            closeLogin();
-            render();
-        } else { alert("Wrong Password!"); }
-    }
+async function showLogin() {
+    const passInput = prompt("Admin Password Required:");
+    if(!passInput) return;
 
-    function logout() {
-        document.getElementById('adminPanel').classList.add('hidden');
-        render();
-    }
+    // Database se password check karna
+    const { data, error } = await supabase
+        .from('admin_settings')
+        .select('password')
+        .eq('id', 1)
+        .single();
 
-    function saveProduct() {
-        const title = document.getElementById('pTitle').value;
-        const btnText = document.getElementById('pBtnText').value || "Shop Now";
-        const image = document.getElementById('pImage').value;
-        const link = document.getElementById('pLink').value;
-
-        if(!title || !image || !link) return alert("Fill all fields!");
-
-        products.unshift({ title, btnText, image, link });
-        localStorage.setItem('products', JSON.stringify(products));
-        location.reload(); 
-    }
-
-    function deleteProduct(index) {
-        if(confirm("Delete this product?")) {
-            products.splice(index, 1);
-            localStorage.setItem('products', JSON.stringify(products));
-            render();
-        }
-    }
-
-    function render() {
-        const grid = document.getElementById('mainGrid');
-        const isAdmin = !document.getElementById('adminPanel').classList.contains('hidden');
-        grid.innerHTML = '';
-
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const paginatedItems = products.slice(start, end);
-
-        paginatedItems.forEach((p, i) => {
-            grid.innerHTML += `
-                <div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col p-3">
-                    <div class="relative group">
-                        <img src="${p.image}" class="w-full h-48 md:h-64 object-cover rounded-2xl" onerror="this.src='https://via.placeholder.com/300'">
-                        ${isAdmin ? `<button onclick="deleteProduct(${start + i})" class="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full text-xs">Delete</button>` : ''}
-                    </div>
-                    <div class="pt-4 pb-2 px-1 flex flex-col flex-grow">
-                        <h3 class="font-bold text-gray-800 text-sm md:text-base line-clamp-2 mb-4 h-12">${p.title}</h3>
-                        <a href="${p.link}" target="_blank" class="w-full bg-gray-900 text-white text-center py-3 rounded-xl text-sm font-bold hover:bg-indigo-600 transition-colors mt-auto">
-                            ${p.btnText}
-                        </a>
-                    </div>
-                </div>
-            `;
-        });
-
-        renderPagination();
-    }
-
-    function renderPagination() {
-        const pg = document.getElementById('pagination');
-        pg.innerHTML = '';
-        const pageCount = Math.ceil(products.length / itemsPerPage);
-
-        for (let i = 1; i <= pageCount; i++) {
-            pg.innerHTML += `
-                <button onclick="goToPage(${i})" class="w-10 h-10 rounded-full border border-gray-300 font-bold transition ${i === currentPage ? 'active-page' : 'bg-white text-gray-600 hover:border-indigo-500'}">
-                    ${i}
-                </button>
-            `;
-        }
-    }
-
-    function goToPage(num) {
-        currentPage = num;
+    if (data && passInput === data.password) {
+        document.getElementById('adminSection').classList.remove('hidden');
+        document.getElementById('adminBtn').classList.add('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        render();
+        renderProducts();
+    } else {
+        alert("Invalid Password!");
     }
+}
 
-    render();
+async function updatePassword() {
+    const newPass = document.getElementById('newPass').value;
+    if(!newPass) return alert("Please enter a new password");
+
+    const { error } = await supabase
+        .from('admin_settings')
+        .update({ password: newPass })
+        .eq('id', 1);
+
+    if(!error) {
+        alert("Password updated successfully! Please login again.");
+        location.reload();
+    } else {
+        alert("Error updating password: " + error.message);
+    }
+}
 </script>
-
-</body>
-</html>

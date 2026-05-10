@@ -8,30 +8,30 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <style>
             .card-img-top {
-                height: 200px; /* Mobile ke liye height thodi kam ki hai taake grid sahi lage */
+                height: 200px; /* Mobile ke liye */
                 object-fit: cover; 
             }
             @media (min-width: 768px) {
                 .card-img-top { height: 300px; }
             }
             
-            /* Items ko control karne ke liye */
             .product-item {
-                display: none;
+                display: none; /* Default hidden */
             }
 
-            /* Mobile view (Max 767px) par 2 products per row */
+            /* Mobile view par 2 products per row (Total 4 show honge shuru me) */
             @media (max-width: 767px) {
                 .row-cols-2 > * {
                     flex: 0 0 auto;
-                    width: 50%; /* Har row mein 2 items */
+                    width: 50%;
                 }
                 .container {
                     padding-left: 10px;
                     padding-right: 10px;
                 }
-                .card-body {
-                    padding: 1rem !important;
+                /* Mobile search bar spacing */
+                .navbar .d-flex {
+                    margin-top: 15px;
                 }
             }
         </style>
@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search...">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search products..." aria-label="Search">
                         <button class="btn btn-outline-dark" id="searchBtn" type="button">Search</button>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Mobile Responsive 2-Row Grid</p>
+                    <p class="lead fw-normal text-white-50 mb-0">Search items below</p>
                 </div>
             </div>
         </header>
@@ -73,24 +73,16 @@
             <div class="container px-2 px-lg-5 mt-5">
                 <div id="product-container" class="row gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Laptop</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Mobile Phone</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Extra Item</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">Link</a></div></div></div>
+
                 </div>
 
                 <div class="text-center mt-4">
@@ -104,13 +96,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <script>
-            // Check if mobile
             const isMobile = window.innerWidth < 768;
-            let currentItems = isMobile ? 4 : 8; // Mobile pe shuru mein 4, desktop pe 8
+            let initialLimit = isMobile ? 4 : 8; 
+            let currentItems = initialLimit;
             const itemsPerClick = 8;
             
             const items = [...document.querySelectorAll('.product-item')];
             const loadMoreBtn = document.querySelector('#loadMore');
+            const searchInput = document.querySelector('#searchInput');
+            const searchBtn = document.querySelector('#searchBtn');
 
             function displayItems(count) {
                 items.forEach((item, index) => {
@@ -118,32 +112,29 @@
                 });
 
                 if (count >= items.length) {
-                    loadMoreBtn.innerText = "Show Less"; // Saare products dikhne par text change
+                    loadMoreBtn.innerText = "Show Less";
                 } else {
                     loadMoreBtn.innerText = "More Products";
                 }
             }
 
             loadMoreBtn.addEventListener('click', () => {
-                if (currentItems >= items.length) {
-                    // Agar sab dikh rahe hain, to wapis hide kar do
-                    currentItems = isMobile ? 4 : 8;
+                if (loadMoreBtn.innerText === "Show Less") {
+                    currentItems = initialLimit;
                 } else {
                     currentItems += itemsPerClick;
                 }
                 displayItems(currentItems);
             });
 
-            // Search logic (Previous work preserved)
-            document.querySelector('#searchBtn').addEventListener('click', filterProducts);
-            document.querySelector('#searchInput').addEventListener('keyup', filterProducts);
-
+            // SEARCH LOGIC
             function filterProducts() {
-                const keyword = document.querySelector('#searchInput').value.toLowerCase();
+                const keyword = searchInput.value.toLowerCase();
                 if (keyword === "") {
-                    displayItems(currentItems);
                     loadMoreBtn.style.display = 'inline-block';
+                    displayItems(currentItems);
                 } else {
+                    // Search ke waqt button hide ho jayega aur matching results show honge
                     loadMoreBtn.style.display = 'none';
                     items.forEach(item => {
                         const title = item.querySelector('h5').innerText.toLowerCase();
@@ -152,6 +143,10 @@
                 }
             }
 
+            searchBtn.addEventListener('click', filterProducts);
+            searchInput.addEventListener('keyup', filterProducts);
+
+            // Initial load
             displayItems(currentItems);
         </script>
     </body>

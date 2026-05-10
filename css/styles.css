@@ -10824,3 +10824,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.product-image{height:320px;object-fit:cover;width:100%;display:block;}
+.card{overflow:hidden;border-radius:14px;}
+.card-body{padding-bottom:0 !important;text-align:center;}
+.card-footer{border-top:none !important;background:transparent !important;padding-top:.5rem !important;padding-bottom:1.5rem !important;}
+.btn{width:80%;border-radius:12px;font-weight:600;}

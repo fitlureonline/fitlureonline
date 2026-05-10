@@ -9,36 +9,46 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfd; margin: 0; padding: 0; }
-        .product-card { transition: all 0.3s ease; border: 1px solid #eee; background: white; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfd; margin: 0; overflow-x: hidden; }
+        .product-card { transition: all 0.3s ease; border: 1px solid #eee; background: white; border-radius: 2rem; overflow: hidden; padding: 1rem; position: relative; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(50,50,93,0.15); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white; }
-        .nav-link { color: #64748b; font-size: 0.9rem; font-weight: 600; text-decoration: none; padding: 5px 10px; }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white; border: none; cursor: pointer; }
+        .nav-link { color: #64748b; font-size: 0.9rem; font-weight: 600; text-decoration: none; padding: 0 15px; transition: 0.3s; }
         .nav-link:hover { color: #4f46e5; }
         .hidden { display: none !important; }
-        /* Button Fix */
-        #adminBtn { position: relative; z-index: 9999 !important; cursor: pointer !important; pointer-events: auto !important; }
+        
+        /* 100% CLICK FIX FOR ADMIN BUTTON */
+        #adminBtn { 
+            position: relative; 
+            z-index: 999999 !important; 
+            cursor: pointer !important; 
+            pointer-events: auto !important; 
+            display: inline-block !important;
+        }
+        
+        nav { position: sticky; top: 0; z-index: 99999; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; }
+        footer { margin-top: auto; padding: 40px 0; background: white; border-top: 1px solid #eee; }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-<nav class="bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-[1000]">
+<nav class="px-6 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-10">
-            <a href="index.html" class="no-underline">
+        <div class="flex items-center">
+            <a href="index.html" class="no-underline flex items-center">
                 <h1 id="textLogo" class="text-2xl font-extrabold tracking-tighter text-indigo-600 m-0">VIRAL<span class="text-gray-900">DEALS</span></h1>
                 <img id="imgLogo" src="" class="h-10 hidden" alt="Logo">
             </a>
             
-            <div id="headerPages" class="flex items-center gap-6">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Best Sellers</a>
-                <a href="#" class="nav-link">New Arrivals</a>
+            <div class="hidden md:flex ml-10 space-x-2">
+                <a href="index.html" class="nav-link border-r">Home</a>
+                <a href="#" class="nav-link border-r">Best Sellers</a>
+                <a href="#" class="nav-link border-r">Trending</a>
                 <a href="#" class="nav-link">Contact</a>
             </div>
         </div>
 
-        <button onclick="showLogin()" id="adminBtn" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-bold shadow-md hover:bg-indigo-700">
+        <button type="button" onclick="showLogin()" id="adminBtn" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-bold shadow-lg hover:bg-indigo-700 transition">
             Admin Login
         </button>
     </div>
@@ -46,47 +56,51 @@
 
 <div id="adminSection" class="hidden max-w-5xl mx-auto my-10 p-10 bg-white rounded-[2rem] shadow-2xl border border-indigo-100">
     <div class="flex justify-between items-center mb-8 border-b pb-6">
-        <h2 class="text-2xl font-bold">Admin Dashboard</h2>
-        <button onclick="location.reload()" class="bg-gray-200 px-4 py-2 rounded-lg text-sm font-bold">Logout</button>
+        <h2 class="text-2xl font-bold">Admin Controls</h2>
+        <button onclick="location.reload()" class="bg-gray-100 px-4 py-2 rounded-xl font-bold text-sm">Logout</button>
     </div>
 
-    <div class="mb-10 bg-gray-50 p-6 rounded-2xl">
-        <h3 class="font-bold mb-4">Site Branding (Logo & Favicon)</h3>
+    <div class="mb-10 bg-indigo-50 p-6 rounded-2xl">
+        <h3 class="font-bold mb-4 text-indigo-900">Site Identity</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" id="logoUrlInput" placeholder="Logo Image URL" class="p-3 border rounded-xl w-full">
-            <input type="text" id="faviconUrlInput" placeholder="Favicon URL" class="p-3 border rounded-xl w-full">
+            <input type="text" id="logoUrlInput" placeholder="Logo Link" class="p-3 border rounded-xl w-full">
+            <input type="text" id="faviconUrlInput" placeholder="Favicon Link" class="p-3 border rounded-xl w-full">
         </div>
-        <button onclick="updateSiteBranding()" class="mt-4 bg-black text-white px-6 py-2 rounded-xl text-sm font-bold">Save Branding</button>
+        <button onclick="updateBranding()" class="mt-4 bg-indigo-600 text-white px-6 py-2 rounded-xl text-xs font-bold">Apply Changes</button>
     </div>
 
-    <h3 class="font-bold mb-4">Post New Product</h3>
+    <h3 class="font-bold mb-4">Add New Product</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <input type="text" id="pTitle" placeholder="Product Name" class="p-3 border rounded-xl">
-        <input type="text" id="pBtn" placeholder="Button Text (Buy Now)" class="p-3 border rounded-xl">
+        <input type="text" id="pTitle" placeholder="Product Title" class="p-3 border rounded-xl">
+        <input type="text" id="pBtn" placeholder="Button Label (Shop Now)" class="p-3 border rounded-xl">
         <input type="text" id="pLink" placeholder="Affiliate Link" class="p-3 border rounded-xl">
-        <input type="file" id="pImageFile" accept="image/*" class="p-3 border rounded-xl bg-white">
+        <input type="file" id="pImageFile" accept="image/*" class="p-3 border rounded-xl">
     </div>
-    <button id="saveBtn" onclick="handleUpload()" class="w-full btn-gradient py-4 rounded-2xl font-bold text-lg">Upload Product</button>
+    <button id="saveBtn" onclick="handleUpload()" class="w-full btn-gradient py-4 rounded-2xl font-bold text-lg">Live Post</button>
 
-    <div class="mt-10 pt-6 border-t">
-        <h3 class="font-bold mb-4">Security</h3>
-        <div class="flex gap-4">
-            <input type="password" id="newPass" placeholder="New Password" class="p-3 border rounded-xl flex-1">
-            <button onclick="updatePassword()" class="bg-red-500 text-white px-6 py-2 rounded-xl font-bold">Change Password</button>
-        </div>
+    <div class="mt-10 pt-6 border-t flex items-center justify-between">
+        <input type="password" id="newPass" placeholder="Change Password" class="p-3 border rounded-xl flex-1 max-w-sm">
+        <button onclick="updatePassword()" class="bg-black text-white px-6 py-3 rounded-xl font-bold ml-4">Update Pass</button>
     </div>
 </div>
 
-<header class="py-16 text-center bg-white">
-    <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">Today's <span class="text-indigo-600 italic">Viral</span> Deals</h1>
-    <p class="text-gray-500">The most trending picks from across the web.</p>
+<header class="py-16 text-center">
+    <h1 class="text-5xl font-black text-gray-900 mb-2">USA <span class="text-indigo-600">Viral</span> Picks</h1>
+    <p class="text-gray-400">Discover hand-picked trending products.</p>
 </header>
 
-<main class="max-w-7xl mx-auto px-6 pb-20">
-    <div id="loader" class="text-center py-20 text-indigo-500 font-bold">Loading deals...</div>
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
-    <div id="pagination" class="flex justify-center mt-12 gap-2"></div>
+<main class="flex-grow max-w-7xl mx-auto px-6 w-full">
+    <div id="loader" class="text-center py-20 font-bold text-indigo-400">Loading live database...</div>
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    <div id="pagination" class="flex justify-center my-16 gap-3"></div>
 </main>
+
+<footer class="text-center">
+    <p class="text-gray-400 text-sm">© 2026 ViralDeals USA. All rights reserved.</p>
+    <div class="mt-4 space-x-4 text-xs text-indigo-400 font-bold uppercase">
+        <a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">DMCA</a>
+    </div>
+</footer>
 
 <script>
     const SB_URL = "https://wozlhgnrdtjrpcswfnng.supabase.co";
@@ -97,59 +111,49 @@
     let currentPage = 1;
     const itemsPerPage = 20;
 
-    // --- INITIALIZE SITE ---
-    window.onload = () => {
-        loadBranding();
-        fetchProducts();
-        console.log("Site Loaded Successfully");
-    };
+    window.onload = () => { loadBranding(); fetchProducts(); };
 
     function loadBranding() {
-        const logo = localStorage.getItem('siteLogo');
-        const fav = localStorage.getItem('siteFavicon');
-        if(logo) {
-            document.getElementById('textLogo').classList.add('hidden');
-            const i = document.getElementById('imgLogo'); i.src = logo; i.classList.remove('hidden');
-        }
-        if(fav) document.getElementById('favicon').href = fav;
+        const l = localStorage.getItem('siteLogo');
+        const f = localStorage.getItem('siteFavicon');
+        if(l) { document.getElementById('textLogo').classList.add('hidden'); document.getElementById('imgLogo').src = l; document.getElementById('imgLogo').classList.remove('hidden'); }
+        if(f) document.getElementById('favicon').href = f;
     }
 
-    function updateSiteBranding() {
+    function updateBranding() {
         const l = document.getElementById('logoUrlInput').value;
         const f = document.getElementById('faviconUrlInput').value;
         if(l) localStorage.setItem('siteLogo', l);
         if(f) localStorage.setItem('siteFavicon', f);
-        alert("Branding Updated!"); location.reload();
+        location.reload();
     }
 
-    // --- LOGIN ---
     async function showLogin() {
-        const pass = prompt("Enter Admin Password:");
-        if(!pass) return;
+        console.log("Login Clicked"); // Debugging
+        const p = prompt("Admin Password:");
+        if(!p) return;
         const { data } = await supabase.from('admin_settings').select('password').eq('id', 1).single();
-        if(data && pass === data.password) {
+        if(data && p === data.password) {
             document.getElementById('adminSection').classList.remove('hidden');
             document.getElementById('adminBtn').classList.add('hidden');
-        } else { alert("Wrong Password!"); }
+        } else { alert("Error!"); }
     }
 
-    // --- UPLOAD ---
     async function handleUpload() {
         const f = document.getElementById('pImageFile').files[0];
         const t = document.getElementById('pTitle').value;
-        const b = document.getElementById('pBtn').value || "Shop Now";
         const l = document.getElementById('pLink').value;
-        if(!f || !t || !l) return alert("Fill all fields!");
-
+        const b = document.getElementById('pBtn').value || "Shop Now";
+        if(!f || !t || !l) return alert("Fill fields!");
+        
         document.getElementById('saveBtn').innerText = "Uploading...";
-        const fileName = `p_${Date.now()}_${f.name}`;
-        await supabase.storage.from('product-images').upload(fileName, f);
-        const { data: pub } = supabase.storage.from('product-images').getPublicUrl(fileName);
+        const n = `img_${Date.now()}_${f.name}`;
+        await supabase.storage.from('product-images').upload(n, f);
+        const { data: pub } = supabase.storage.from('product-images').getPublicUrl(n);
         await supabase.from('products').insert([{ title: t, btn_text: b, image_url: pub.publicUrl, affiliate_link: l }]);
         location.reload();
     }
 
-    // --- FETCH DATA ---
     async function fetchProducts() {
         const { data } = await supabase.from('products').select('*').order('created_at', { ascending: false });
         if(data) { allProducts = data; renderGrid(); }
@@ -160,15 +164,15 @@
         const grid = document.getElementById('productGrid');
         const isAdmin = !document.getElementById('adminSection').classList.contains('hidden');
         grid.innerHTML = '';
-        const slice = allProducts.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage);
-
-        slice.forEach(p => {
+        const items = allProducts.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage);
+        
+        items.forEach(p => {
             grid.innerHTML += `
-            <div class="product-card rounded-[2rem] p-4 flex flex-col relative">
-                ${isAdmin ? `<button onclick="delP(${p.id})" class="absolute top-6 right-6 bg-red-500 text-white p-2 rounded-full text-[10px]">DEL</button>` : ''}
-                <img src="${p.image_url}" class="w-full h-64 object-cover rounded-3xl mb-4">
-                <h3 class="font-bold text-gray-800 mb-4 h-12 line-clamp-2 px-1">${p.title}</h3>
-                <a href="${p.affiliate_link}" target="_blank" class="w-full btn-gradient text-center py-4 rounded-2xl font-bold no-underline text-sm shadow-md mt-auto">${p.btn_text}</a>
+            <div class="product-card flex flex-col">
+                ${isAdmin ? `<button onclick="delP(${p.id})" class="absolute top-4 right-4 bg-red-500 text-white w-8 h-8 rounded-full text-[10px] z-[50]">X</button>` : ''}
+                <img src="${p.image_url}" class="w-full h-64 object-cover rounded-2xl mb-4">
+                <h3 class="font-bold text-gray-800 h-12 line-clamp-2 mb-4">${p.title}</h3>
+                <a href="${p.affiliate_link}" target="_blank" class="w-full btn-gradient text-center py-4 rounded-xl font-bold no-underline text-sm mt-auto shadow-md">${p.btn_text}</a>
             </div>`;
         });
         renderPages();
@@ -181,14 +185,14 @@
         const total = Math.ceil(allProducts.length / itemsPerPage);
         pg.innerHTML = ''; if(total <= 1) return;
         for(let i=1; i<=total; i++) {
-            pg.innerHTML += `<button onclick="currentPage=${i};renderGrid();window.scrollTo(0,300);" class="w-10 h-10 rounded-lg font-bold ${i===currentPage?'bg-indigo-600 text-white':'bg-gray-200'}">${i}</button>`;
+            pg.innerHTML += `<button onclick="currentPage=${i};renderGrid();window.scrollTo(0,400);" class="w-10 h-10 rounded-xl font-bold ${i===currentPage?'bg-indigo-600 text-white':'bg-gray-100'}">${i}</button>`;
         }
     }
 
     async function updatePassword() {
         const p = document.getElementById('newPass').value;
         await supabase.from('admin_settings').update({ password: p }).eq('id', 1);
-        alert("Password Updated!"); location.reload();
+        alert("Done!"); location.reload();
     }
 </script>
 

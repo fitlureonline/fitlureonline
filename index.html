@@ -1,49 +1,199 @@
-<div class="mt-12 pt-8 border-t border-gray-100">
-    <h3 class="text-lg font-bold mb-4 text-gray-700">Security Settings</h3>
-    <div class="flex gap-4">
-        <input type="password" id="newPass" placeholder="Enter New Password" class="flex-1 p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
-        <button onclick="updatePassword()" class="bg-gray-800 text-white px-8 py-4 rounded-2xl font-bold hover:bg-black transition">Update Password</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Deals | USA Viral Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfd; }
+        .product-card { transition: all 0.3s ease; border: 1px solid #eee; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(50,50,93,0.15); border-color: transparent; }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<nav class="bg-white/70 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-100 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-extrabold tracking-tighter text-indigo-600">VIRAL<span class="text-gray-900">DEALS</span></h1>
+        <button onclick="showLogin()" id="adminBtn" class="bg-gray-100 px-4 py-2 rounded-full text-xs font-bold text-gray-600 hover:bg-gray-200">Admin Login</button>
+    </div>
+</nav>
+
+<div id="adminSection" class="hidden max-w-5xl mx-auto my-10 p-8 bg-white rounded-[2.5rem] shadow-xl border border-indigo-50">
+    <div class="flex justify-between items-center mb-8 border-b pb-4">
+        <h2 class="text-2xl font-bold">Admin Dashboard</h2>
+        <button onclick="location.reload()" class="text-red-500 font-bold bg-red-50 px-4 py-2 rounded-xl">Logout</button>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input type="text" id="pTitle" placeholder="Product Name" class="p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
+        <input type="text" id="pBtn" placeholder="Button Text (Shop Now)" class="p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
+        <input type="text" id="pLink" placeholder="Affiliate Link" class="p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
+        <div class="flex flex-col">
+            <label class="text-[10px] font-bold text-gray-400 mb-2 px-2 uppercase">Upload Image</label>
+            <input type="file" id="pImageFile" accept="image/*" class="p-3 bg-indigo-50 rounded-2xl border-2 border-dashed border-indigo-200">
+        </div>
+    </div>
+    <button id="saveBtn" onclick="handleUpload()" class="w-full mt-6 btn-gradient text-white py-4 rounded-2xl font-bold shadow-lg">Add Product & Save</button>
+
+    <div class="mt-12 pt-8 border-t border-gray-100">
+        <h3 class="text-lg font-bold mb-4 text-gray-700">Security Settings</h3>
+        <div class="flex gap-4">
+            <input type="password" id="newPass" placeholder="Enter New Password" class="flex-1 p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 ring-indigo-500">
+            <button onclick="updatePassword()" class="bg-gray-800 text-white px-8 py-4 rounded-2xl font-bold">Update Password</button>
+        </div>
     </div>
 </div>
 
+<header class="py-12 text-center">
+    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">Today's <span class="text-indigo-600">Viral</span> Finds</h2>
+    <p class="text-gray-500 text-lg max-w-xl mx-auto px-4">Hand-picked trending products for you. Updated daily.</p>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+    <div id="loader" class="text-center py-20 text-gray-400 font-medium italic">Searching for best deals...</div>
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        </div>
+    
+    <div id="pagination" class="flex justify-center mt-20 gap-3"></div>
+</main>
+
+<footer class="bg-white border-t border-gray-100 py-12 text-center mt-20">
+    <p class="text-gray-400 text-sm">© 2026 ViralDeals. All rights reserved.</p>
+</footer>
+
 <script>
-// --- PASSWORD LOGIC ---
+    // --- SUPABASE CONFIG ---
+    const SB_URL = "https://wozlhgnrdtjrpcswfnng.supabase.co";
+    const SB_KEY = "sb_publishable_0l_1z3TYg-CTTnLskiMTzg_ljcPuoaq";
+    const supabase = lib.supabase.createClient(SB_URL, SB_KEY);
 
-async function showLogin() {
-    const passInput = prompt("Admin Password Required:");
-    if(!passInput) return;
+    let allProducts = [];
+    let currentPage = 1;
+    const itemsPerPage = 20;
 
-    // Database se password check karna
-    const { data, error } = await supabase
-        .from('admin_settings')
-        .select('password')
-        .eq('id', 1)
-        .single();
+    // --- LOGIN LOGIC ---
+    async function showLogin() {
+        const passInput = prompt("Enter Admin Password:");
+        if(!passInput) return;
 
-    if (data && passInput === data.password) {
-        document.getElementById('adminSection').classList.remove('hidden');
-        document.getElementById('adminBtn').classList.add('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        renderProducts();
-    } else {
-        alert("Invalid Password!");
+        const { data } = await supabase.from('admin_settings').select('password').eq('id', 1).single();
+
+        if (data && passInput === data.password) {
+            document.getElementById('adminSection').classList.remove('hidden');
+            document.getElementById('adminBtn').classList.add('hidden');
+            renderProducts();
+        } else {
+            alert("Wrong Password!");
+        }
     }
-}
 
-async function updatePassword() {
-    const newPass = document.getElementById('newPass').value;
-    if(!newPass) return alert("Please enter a new password");
+    // --- UPDATE PASSWORD ---
+    async function updatePassword() {
+        const newPass = document.getElementById('newPass').value;
+        if(!newPass) return alert("Enter password first");
 
-    const { error } = await supabase
-        .from('admin_settings')
-        .update({ password: newPass })
-        .eq('id', 1);
+        const { error } = await supabase.from('admin_settings').update({ password: newPass }).eq('id', 1);
 
-    if(!error) {
-        alert("Password updated successfully! Please login again.");
-        location.reload();
-    } else {
-        alert("Error updating password: " + error.message);
+        if(!error) {
+            alert("Password Changed! Please Login Again.");
+            location.reload();
+        } else {
+            alert("Error: " + error.message);
+        }
     }
-}
+
+    // --- UPLOAD PRODUCT ---
+    async function handleUpload() {
+        const file = document.getElementById('pImageFile').files[0];
+        const title = document.getElementById('pTitle').value;
+        const btnText = document.getElementById('pBtn').value || "Shop Now";
+        const link = document.getElementById('pLink').value;
+        const saveBtn = document.getElementById('saveBtn');
+
+        if(!file || !title || !link) return alert("Missing details!");
+        
+        saveBtn.innerText = "Processing... Wait";
+        saveBtn.disabled = true;
+
+        try {
+            const fileName = `prod_${Date.now()}_${file.name}`;
+            const { data: imgData, error: imgErr } = await supabase.storage.from('product-images').upload(fileName, file);
+            if(imgErr) throw imgErr;
+
+            const { data: publicUrl } = supabase.storage.from('product-images').getPublicUrl(fileName);
+
+            const { error: dbErr } = await supabase.from('products').insert([{ 
+                title, btn_text: btnText, image_url: publicUrl.publicUrl, affiliate_link: link 
+            }]);
+
+            if(dbErr) throw dbErr;
+            location.reload();
+        } catch (err) {
+            alert(err.message);
+            saveBtn.innerText = "Add Product & Save";
+            saveBtn.disabled = false;
+        }
+    }
+
+    // --- FETCH & SHOW PRODUCTS ---
+    async function fetchProducts() {
+        const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+        if(!error) {
+            allProducts = data;
+            renderProducts();
+        }
+        document.getElementById('loader').classList.add('hidden');
+    }
+
+    function renderProducts() {
+        const grid = document.getElementById('productGrid');
+        const isAdmin = !document.getElementById('adminSection').classList.contains('hidden');
+        grid.innerHTML = '';
+        
+        const start = (currentPage - 1) * itemsPerPage;
+        const items = allProducts.slice(start, start + itemsPerPage);
+
+        items.forEach((p, idx) => {
+            grid.innerHTML += `
+                <div class="product-card bg-white rounded-[2rem] overflow-hidden flex flex-col p-4 relative">
+                    ${isAdmin ? `<button onclick="deleteProduct(${p.id})" class="absolute top-6 right-6 bg-red-500 text-white w-8 h-8 rounded-full text-xs z-10">✕</button>` : ''}
+                    <img src="${p.image_url}" class="w-full h-64 md:h-72 object-cover rounded-[1.5rem] mb-4">
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base mb-4 h-12 line-clamp-2 px-2">${p.title}</h3>
+                    <a href="${p.affiliate_link}" target="_blank" class="w-full btn-gradient text-white text-center py-4 rounded-2xl text-xs font-bold shadow-md mt-auto">
+                        ${p.btn_text}
+                    </a>
+                </div>
+            `;
+        });
+        renderPagination();
+    }
+
+    async function deleteProduct(id) {
+        if(confirm("Delete this?")) {
+            await supabase.from('products').delete().eq('id', id);
+            location.reload();
+        }
+    }
+
+    function renderPagination() {
+        const pg = document.getElementById('pagination');
+        const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+        pg.innerHTML = '';
+        if(totalPages <= 1) return;
+        for(let i=1; i<=totalPages; i++) {
+            pg.innerHTML += `<button onclick="setPage(${i})" class="w-10 h-10 rounded-xl font-bold ${i === currentPage ? 'bg-indigo-600 text-white' : 'bg-gray-100'}">${i}</button>`;
+        }
+    }
+
+    function setPage(n) { currentPage = n; renderProducts(); }
+    fetchProducts();
 </script>
+
+</body>
+</html>

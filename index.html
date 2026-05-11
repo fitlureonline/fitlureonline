@@ -3,95 +3,252 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Shop Homepage - Responsive Grid</title>
+        <title>FitLure - Health & Lifestyle Store</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <style>
-.search-section {
-  margin-top: 50px; /* 👈 sirf upar se space */
-}
-</style>
+        
+        <!-- Main Styles -->
         <style>
-/* Modern Green Button Style - Global */
+            /* Global Reset & Spacing */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-button,
-.btn,
-input[type="submit"],
-input[type="button"] {
-  background: linear-gradient(135deg, #00c853, #00e676) !important;
-  color: #ffffff !important;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.25);
-}
+            body {
+                background: #f8f9fa;
+                font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            }
 
-/* Hover Effect */
-button:hover,
-.btn:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-  transform: translateY(-3px) scale(1.03);
-  background: linear-gradient(135deg, #00e676, #00ff95) !important;
-  box-shadow: 0 10px 25px rgba(0, 255, 149, 0.35);
-}
+            /* Modern Green Button Style - Global with refined spacing */
+            button,
+            .btn,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, #00c853, #00e676) !important;
+                color: #ffffff !important;
+                border: none;
+                padding: 12px 28px;
+                border-radius: 40px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 230, 118, 0.25);
+                letter-spacing: 0.3px;
+            }
 
-/* Active Click Effect */
-button:active,
-.btn:active {
-  transform: scale(0.97);
-}
+            button:hover,
+            .btn:hover,
+            input[type="submit"]:hover,
+            input[type="button"]:hover {
+                transform: translateY(-2px) scale(1.02);
+                background: linear-gradient(135deg, #00e676, #00ff95) !important;
+                box-shadow: 0 8px 20px rgba(0, 255, 149, 0.35);
+            }
 
-/* Modern spacing feel */
-button,
-.btn {
-  letter-spacing: 0.5px;
-}
-</style>
-        <style>
+            button:active,
+            .btn:active {
+                transform: scale(0.97);
+            }
+
+            /* Card styling */
+            .card {
+                border-radius: 20px;
+                overflow: hidden;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                border: none;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+                background: white;
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
             .card-img-top {
-                height: 200px; 
-                object-fit: cover; 
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
             }
             @media (min-width: 768px) {
-                .card-img-top { height: 300px; }
+                .card-img-top { height: 260px; }
             }
-            
+            .card-body h5 {
+                font-weight: 700;
+                color: #1e2a3e;
+                margin-bottom: 0.5rem;
+            }
+            .card-footer {
+                background: transparent;
+                border-top: none;
+                padding-bottom: 1.5rem !important;
+            }
+            .btn-outline-dark {
+                background: transparent !important;
+                color: #1f2937 !important;
+                border: 1.5px solid #e2e8f0;
+                box-shadow: none;
+                border-radius: 40px;
+                padding: 8px 20px;
+                font-weight: 500;
+            }
+            .btn-outline-dark:hover {
+                background: linear-gradient(135deg, #00c853, #00e676) !important;
+                color: white !important;
+                border-color: transparent;
+                transform: translateY(-2px);
+            }
+
+            /* Product item base display */
             .product-item {
                 display: none;
             }
 
+            /* Responsive grid spacing improvements */
+            .row.gx-3 {
+                --bs-gutter-x: 1.2rem;
+            }
             @media (max-width: 767px) {
                 .row-cols-2 > * {
                     flex: 0 0 auto;
                     width: 50%; 
                 }
                 .container {
-                    padding-left: 10px;
-                    padding-right: 10px;
+                    padding-left: 16px;
+                    padding-right: 16px;
                 }
                 .card-body {
                     padding: 1rem !important;
                 }
             }
 
-            /* Search Section Styling (Products ke ooper ke liye) */
+            /* SEARCH SECTION - Centered with proper top/bottom margins */
             .search-section {
-                max-width: 500px;
-                margin: 0 auto 30px auto;
+                max-width: 560px;
+                margin: 40px auto 48px auto;  /* top margin 40px, bottom 48px - perfectly balanced */
+                padding: 0 16px;
+            }
+            .search-section .input-group {
+                border-radius: 60px;
+                overflow: hidden;
+                box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+                background: white;
+                border: 1px solid #e9ecef;
+                transition: box-shadow 0.2s;
+            }
+            .search-section .input-group:focus-within {
+                box-shadow: 0 8px 22px rgba(0,200,83,0.12);
+                border-color: #00c853;
+            }
+            .search-section .form-control {
+                border: none;
+                padding: 14px 20px;
+                font-size: 1rem;
+                background: white;
+                border-radius: 60px 0 0 60px;
+            }
+            .search-section .form-control:focus {
+                box-shadow: none;
+                outline: none;
+            }
+            .search-section .btn {
+                border-radius: 0 60px 60px 0;
+                padding: 12px 28px;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            /* Products container - Centered and enhanced spacing */
+            #product-container {
+                margin-top: 16px;
+                margin-bottom: 20px;
+                justify-content: center !important;
+                row-gap: 1.8rem;
+            }
+            .col.mb-5 {
+                margin-bottom: 1.8rem !important;
+            }
+
+            /* Load more button styling */
+            .text-center.mt-4 {
+                margin-top: 30px !important;
+                margin-bottom: 50px;
+            }
+            #loadMore {
+                padding: 12px 40px;
+                font-size: 1rem;
+                border-radius: 50px;
+                background: linear-gradient(135deg, #1e2a3e, #2d3e50) !important;
+                box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+            }
+            #loadMore:hover {
+                background: linear-gradient(135deg, #2d3e50, #1e2a3e) !important;
+            }
+
+            /* Hero section extra spacing fix */
+            header.bg-dark {
+                padding: 2rem 0;
+            }
+            .hero-container {
+                max-width: 780px;
+                margin: 0 auto;
+                padding: 20px 24px;
+            }
+            .hero-title {
+                font-size: 42px;
+                font-weight: 800;
+                letter-spacing: -0.3px;
+                color: white;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+            .hero-description {
+                font-size: 18px;
+                color: #d4d4d8;
+                max-width: 620px;
+                margin: 0 auto 28px auto;
+                line-height: 1.5;
+            }
+            .hero-btn {
+                display: inline-block;
+                padding: 12px 34px;
+                background: #00c853;
+                color: white;
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: 700;
+                transition: 0.2s;
+                box-shadow: 0 4px 12px rgba(0,200,83,0.3);
+            }
+            .hero-btn:hover {
+                background: #00e676;
+                transform: translateY(-2px);
+                color: white;
+            }
+            @media (max-width: 640px) {
+                .hero-title { font-size: 32px; }
+                .hero-description { font-size: 16px; }
+                .search-section { margin: 32px auto 40px auto; }
+            }
+            footer {
+                margin-top: 20px;
+            }
+            /* Fix for duplicate center tags & layout glitches */
+            center {
+                display: block;
+                text-align: center;
             }
         </style>
-       <style>.hero-text{  padding:80px 20px;  text-align:center;  background:linear-gradient(to right,#111,#1c1c1c);  border-radius:20px;}.hero-container{  max-width:700px;  margin:auto;}.hero-title{  font-size:48px;  margin-bottom:20px;  font-weight:700;  color:white;}.hero-description{  font-size:18px;  line-height:1.7;  color:#cfcfcf;  margin-bottom:30px;}.hero-btn{  display:inline-block;  padding:14px 32px;  background:#00c853;  color:white;  text-decoration:none;  border-radius:8px;  font-weight:bold;  transition:0.3s;}.hero-btn:hover{  background:#00e676;  transform:translateY(-2px);}</style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
+                <a class="navbar-brand fw-bold" href="#!">🌿 FitLure</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" href="#!">Home</a></li>
@@ -107,105 +264,193 @@ button,
             </div>
         </nav>
         
+        <!-- Hero Section - Fixed duplicate center tags (removed erroneous extra center tags) -->
         <header class="bg-dark py-5">
-            <div class="hero-container">
-    <center><h2 class="hero-title">🌿 Better habits. Better health. Better lifestyle</h2> </center>center>
-
-     <center><p class="hero-description">
-      Helping you stay consistent with fitness, nutrition & healthier daily routines.
-      Easy-to-follow solutions for building a stronger body and healthier mindset.
-    </p> </center>center>
-
-    <center><a href="#" class="hero-btn">Explore Now</a></center>center>
-  </div>
+            <div class="hero-container text-center">
+                <h2 class="hero-title">🌿 Better habits. Better health. Better lifestyle</h2>
+                <p class="hero-description mx-auto">
+                    Helping you stay consistent with fitness, nutrition & healthier daily routines.
+                    Easy-to-follow solutions for building a stronger body and healthier mindset.
+                </p>
+                <a href="#" class="hero-btn">Explore Now</a>
             </div>
         </header> 
-                <div class="search-section">
-                    <div class="input-group">
-                        <input class="form-control" type="search" id="searchInput" placeholder="Search products here..." aria-label="Search">
-                        <button class="btn btn-dark" id="searchBtn" type="button">Search</button>
-                    </div>
-                </div>
-
-                <div id="product-container" class="row gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">tablet 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Slim 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    </div>
-
-                <div class="text-center mt-4">
-                    <button id="loadMore" class="btn btn-dark btn-lg">More Products</button>
-                </div>
+        
+        <!-- Search Bar - Fixed margins (top & bottom spacing correct) -->
+        <div class="search-section">
+            <div class="input-group">
+                <input class="form-control" type="search" id="searchInput" placeholder="Search products here..." aria-label="Search">
+                <button class="btn btn-dark" id="searchBtn" type="button">🔍 Search</button>
             </div>
-     
+        </div>
 
-        <footer class="py-5 bg-dark"><div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div></footer>
+        <!-- Products Container - Fully centered, improved spacing with row-cols and alignment -->
+        <div class="container px-3 px-lg-4">
+            <div id="product-container" class="row g-4 gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <!-- Product 1 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="Wellness product" /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Herbal Fusion</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 2 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Energy Booster</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 3 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Green Vitality</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 4 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Omega Essentials</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 5 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Plant Protein</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 6 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Mindful Mood</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 7 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Sleep Well</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 8 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Immunity Shield</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 9 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">tablet 1 - Daily Boost</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 10 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Vegan Omega</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 11 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Apple Cider</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 12 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Slim 5 - Detox</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 13 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Matcha Green</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 14 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Ashwagandha</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 15 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Collagen Peptides</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 16 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Probiotic +</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 17 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Vitamin C Complex</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 18 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Moringa Caps</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+                <!-- Product 19 -->
+                <div class="col product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Turmeric Gold</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Shop Now →</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Load More Button Centered -->
+        <div class="text-center mt-4 mb-5">
+            <button id="loadMore" class="btn btn-dark btn-lg px-5">More Products</button>
+        </div>
+
+        <footer class="py-4 bg-dark mt-3">
+            <div class="container"><p class="m-0 text-center text-white-50">Copyright &copy; FitLure 2025 | Better Life Better Health</p></div>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <script>
-            const isMobile = window.innerWidth < 768;
-            let currentItems = isMobile ? 4 : 8; 
-            const itemsPerClick = 8;
-            
-            const items = [...document.querySelectorAll('.product-item')];
-            const loadMoreBtn = document.querySelector('#loadMore');
-            const searchInput = document.querySelector('#searchInput');
-            const searchBtn = document.querySelector('#searchBtn');
-
-            function displayItems(count) {
-                items.forEach((item, index) => {
-                    item.style.display = (index < count) ? 'block' : 'none';
-                });
-                if (count >= items.length) {
-                    loadMoreBtn.innerText = "Show Less";
-                } else {
-                    loadMoreBtn.innerText = "More Products";
-                }
-            }
-
-            loadMoreBtn.addEventListener('click', () => {
-                if (loadMoreBtn.innerText === "Show Less") {
-                    currentItems = isMobile ? 4 : 8;
-                } else {
-                    currentItems += itemsPerClick;
-                }
-                displayItems(currentItems);
-            });
-
-            function filterProducts() {
-                const keyword = searchInput.value.toLowerCase();
-                if (keyword === "") {
-                    loadMoreBtn.style.display = 'inline-block';
-                    displayItems(currentItems);
-                } else {
-                    loadMoreBtn.style.display = 'none';
-                    items.forEach(item => {
-                        const title = item.querySelector('h5').innerText.toLowerCase();
-                        item.style.display = title.includes(keyword) ? 'block' : 'none';
+            (function() {
+                // Fix: ensure all product items are detected and initially hidden properly
+                const isMobile = window.innerWidth < 768;
+                let currentItems = isMobile ? 4 : 8;      // initial load count
+                const itemsPerClick = 8;
+                
+                const items = [...document.querySelectorAll('.product-item')];
+                const loadMoreBtn = document.querySelector('#loadMore');
+                const searchInput = document.querySelector('#searchInput');
+                const searchBtn = document.querySelector('#searchBtn');
+                
+                // Helper to update visible products count
+                function displayItems(count) {
+                    // always respect total items boundaries
+                    const visibleCount = Math.min(count, items.length);
+                    items.forEach((item, index) => {
+                        if (index < visibleCount) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     });
+                    // update button text if all items shown
+                    if (visibleCount >= items.length) {
+                        loadMoreBtn.innerText = "Show Less";
+                    } else {
+                        loadMoreBtn.innerText = "More Products";
+                    }
                 }
-            }
-
-            searchBtn.addEventListener('click', filterProducts);
-            searchInput.addEventListener('keyup', filterProducts);
-
-            displayItems(currentItems);
+                
+                // Load More / Show Less functionality
+                function toggleLoadMore() {
+                    if (loadMoreBtn.innerText === "Show Less") {
+                        // reset to initial view based on mobile/desktop
+                        currentItems = isMobile ? 4 : 8;
+                        displayItems(currentItems);
+                    } else {
+                        // add more items
+                        let newCount = currentItems + itemsPerClick;
+                        if (newCount >= items.length) {
+                            newCount = items.length;
+                        }
+                        currentItems = newCount;
+                        displayItems(currentItems);
+                    }
+                }
+                
+                // Search filter (preserves show less/more state only when search is on)
+                let isSearchActive = false;
+                let lastKeyword = '';
+                
+                function filterProducts() {
+                    const keyword = searchInput.value.trim().toLowerCase();
+                    lastKeyword = keyword;
+                    
+                    if (keyword === "") {
+                        // reset search mode, show default pagination view
+                        isSearchActive = false;
+                        loadMoreBtn.style.display = 'inline-block';
+                        // restore currentItems respecting initial or previous shown count (not altered)
+                        // but to be safe reflect stored currentItems
+                        displayItems(currentItems);
+                    } else {
+                        isSearchActive = true;
+                        loadMoreBtn.style.display = 'none';
+                        let anyMatch = false;
+                        items.forEach(item => {
+                            const titleElem = item.querySelector('h5');
+                            if (!titleElem) return;
+                            const title = titleElem.innerText.toLowerCase();
+                            if (title.includes(keyword)) {
+                                item.style.display = 'block';
+                                anyMatch = true;
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                        // optional: if no matches, nothing extra needed
+                        if (!anyMatch) {
+                            // quietly keep container empty state but no error
+                        }
+                    }
+                }
+                
+                // attach event listeners
+                if (loadMoreBtn) loadMoreBtn.addEventListener('click', toggleLoadMore);
+                if (searchBtn) searchBtn.addEventListener('click', filterProducts);
+                if (searchInput) searchInput.addEventListener('keyup', (e) => {
+                    filterProducts();
+                });
+                
+                // Also listen for window resize to adjust if mobile/desktop changes? optional for consistency
+                window.addEventListener('resize', function() {
+                    const newIsMobile = window.innerWidth < 768;
+                    // Only reset if viewport toggles between mobile and desktop and no search active.
+                    if (!isSearchActive) {
+                        if ((newIsMobile && currentItems > 4 && currentItems !== 4) || (!newIsMobile && currentItems === 4 && items.length > 8)) {
+                            // adjust default count based on screen size reset, but only if not in expanded mode
+                            if (loadMoreBtn.innerText !== "Show Less") {
+                                currentItems = newIsMobile ? 4 : 8;
+                                displayItems(currentItems);
+                            } else if (loadMoreBtn.innerText === "Show Less" && newIsMobile && currentItems > 4) {
+                                // keep as show less but ensure not weird
+                            }
+                        }
+                    }
+                });
+                
+                // initial display
+                displayItems(currentItems);
+            })();
         </script>
     </body>
 </html>

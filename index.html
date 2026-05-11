@@ -3,195 +3,159 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Shop Homepage - Responsive Grid</title>
+        <title>ArticVisuals - Shop Homepage</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
         <style>
-/* Remove default browser spacing */
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/* Hero section top spacing fix */
-.hero-text {
-  margin-top: 0;
-  padding-top: 40px; /* controlled space */
-}
-
-/* Optional: remove unwanted margin from container */
-.hero-container {
-  margin-top: 0;
-}
-</style>
-        <style>
-/* Modern Green Button Style - Global */
-
-button,
-.btn,
-input[type="submit"],
-input[type="button"] {
-  background: linear-gradient(135deg, #00c853, #00e676) !important;
-  color: #ffffff !important;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.25);
-}
-
-/* Hover Effect */
-button:hover,
-.btn:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-  transform: translateY(-3px) scale(1.03);
-  background: linear-gradient(135deg, #00e676, #00ff95) !important;
-  box-shadow: 0 10px 25px rgba(0, 255, 149, 0.35);
-}
-
-/* Active Click Effect */
-button:active,
-.btn:active {
-  transform: scale(0.97);
-}
-
-/* Modern spacing feel */
-button,
-.btn {
-  letter-spacing: 0.5px;
-}
-</style>
-        <style>
-            .card-img-top {
-                height: 200px; 
-                object-fit: cover; 
-            }
-            @media (min-width: 768px) {
-                .card-img-top { height: 300px; }
-            }
-            
-            .product-item {
-                display: none;
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
             }
 
-            @media (max-width: 767px) {
-                .row-cols-2 > * {
-                    flex: 0 0 auto;
-                    width: 50%; 
-                }
-                .container {
-                    padding-left: 10px;
-                    padding-right: 10px;
-                }
-                .card-body {
-                    padding: 1rem !important;
-                }
+            /* --- HERO SECTION SPACING --- */
+            .hero-text {
+                padding: 60px 20px; 
+                text-align: center;
+                background: linear-gradient(135deg, #111, #222);
+                border-radius: 24px;
+                margin: 40px auto; /* Top aur Bottom margin balanced kiya */
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
 
-            /* Search Section Styling (Products ke ooper ke liye) */
+            .hero-container {
+                max-width: 750px;
+                margin: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(24px, 5vw, 42px); /* Responsive font size */
+                margin-bottom: 20px;
+                font-weight: 700;
+                color: white;
+            }
+
+            .hero-description {
+                font-size: 18px;
+                line-height: 1.6;
+                color: #cfcfcf;
+                margin-bottom: 30px;
+            }
+
+            /* --- SEARCH SECTION SPACING --- */
             .search-section {
-                max-width: 500px;
-                margin: 0 auto 30px auto;
+                max-width: 550px;
+                margin: 0 auto 60px auto; /* Bottom margin barhaya taaki products se gap rahy */
             }
+
+            /* --- BUTTONS & INPUTS --- */
+            .btn-green {
+                background: linear-gradient(135deg, #00c853, #00e676) !important;
+                color: #ffffff !important;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 12px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .btn-green:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 230, 118, 0.3);
+                color: white !important;
+            }
+
+            .form-control {
+                border-radius: 12px 0 0 12px !important;
+                padding: 12px 20px;
+                border: 1px solid #ddd;
+            }
+
+            .search-btn {
+                border-radius: 0 12px 12px 0 !important;
+                padding: 12px 25px;
+            }
+
+            /* Card Styling */
+            .card {
+                border: none;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+                transition: transform 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card-img-top {
+                height: 250px;
+                object-fit: cover;
+            }
+
+            .product-item { display: none; }
         </style>
-       <style>.hero-text{  padding:80px 20px;  text-align:center;  background:linear-gradient(to right,#111,#1c1c1c);  border-radius:20px;}.hero-container{  max-width:700px;  margin:auto;}.hero-title{  font-size:48px;  margin-bottom:20px;  font-weight:700;  color:white;}.hero-description{  font-size:18px;  line-height:1.7;  color:#cfcfcf;  margin-bottom:30px;}.hero-btn{  display:inline-block;  padding:14px 32px;  background:#00c853;  color:white;  text-decoration:none;  border-radius:8px;  font-weight:bold;  transition:0.3s;}.hero-btn:hover{  background:#00e676;  transform:translateY(-2px);}</style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container px-4">
+                <a class="navbar-brand fw-bold" href="#!">ArticVisuals</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">Shop</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Templates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Assets</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Mobile Responsive 2-Row Grid</p>
-                </div>
-            </div>
-        </header>
 
-        <section class="py-5">
-            <div class="container px-2 px-lg-5 mt-5">
+        <section class="py-2">
+            <div class="container px-4">
+                <header class="hero-text">
+                    <div class="hero-container">
+                        <h2 class="hero-title">🌿 Better habits. Better health. Better lifestyle</h2>
+                        <p class="hero-description">
+                            Helping you stay consistent with fitness, nutrition & healthier daily routines.
+                            Easy-to-follow solutions for building a stronger body and healthier mindset.
+                        </p>
+                        <a href="#" class="btn-green">Explore Now</a>
+                    </div>
+                </header>
 
-        <section class="hero-text">
-  <div class="hero-container">
-    <h2 class="hero-title">🌿 Better habits. Better health. Better lifestyle</h2>
-
-    <p class="hero-description">
-      Helping you stay consistent with fitness, nutrition & healthier daily routines.
-      Easy-to-follow solutions for building a stronger body and healthier mindset.
-    </p>
-
-    <a href="#" class="hero-btn">Explore Now</a>
-  </div>
-</section>      
                 <div class="search-section">
                     <div class="input-group">
-                        <input class="form-control" type="search" id="searchInput" placeholder="Search products here..." aria-label="Search">
-                        <button class="btn btn-dark" id="searchBtn" type="button">Search</button>
+                        <input class="form-control" type="search" id="searchInput" placeholder="Search digital assets..." aria-label="Search">
+                        <button class="btn btn-dark search-btn" id="searchBtn" type="button">Search</button>
                     </div>
                 </div>
 
-                <div id="product-container" class="row gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/vocie_ove.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">tablet 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 3</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Slim 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 5</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 6</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 7</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 8</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
-                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Product 9</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://supabase.com/">Link</a></div></div></div>
+                <div id="product-container" class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Digital Template 1</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">View Details</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Asset Pack 2</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">View Details</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Photoshop Action</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">View Details</a></div></div></div>
+                    <div class="col mb-5 product-item"><div class="card h-100"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">UI Kit 4</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="#">View Details</a></div></div></div>
                     </div>
 
-                <div class="text-center mt-4">
-                    <button id="loadMore" class="btn btn-dark btn-lg">More Products</button>
+                <div class="text-center mt-2 mb-5">
+                    <button id="loadMore" class="btn btn-dark btn-lg px-5">More Products</button>
                 </div>
             </div>
         </section>
 
-        <footer class="py-5 bg-dark"><div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div></footer>
+        <footer class="py-5 bg-dark"><div class="container"><p class="m-0 text-center text-white">Copyright &copy; ArticVisuals 2026</p></div></footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        
         <script>
             const isMobile = window.innerWidth < 768;
             let currentItems = isMobile ? 4 : 8; 
-            const itemsPerClick = 8;
-            
             const items = [...document.querySelectorAll('.product-item')];
             const loadMoreBtn = document.querySelector('#loadMore');
-            const searchInput = document.querySelector('#searchInput');
-            const searchBtn = document.querySelector('#searchBtn');
 
             function displayItems(count) {
                 items.forEach((item, index) => {
@@ -208,27 +172,10 @@ button,
                 if (loadMoreBtn.innerText === "Show Less") {
                     currentItems = isMobile ? 4 : 8;
                 } else {
-                    currentItems += itemsPerClick;
+                    currentItems += 8;
                 }
                 displayItems(currentItems);
             });
-
-            function filterProducts() {
-                const keyword = searchInput.value.toLowerCase();
-                if (keyword === "") {
-                    loadMoreBtn.style.display = 'inline-block';
-                    displayItems(currentItems);
-                } else {
-                    loadMoreBtn.style.display = 'none';
-                    items.forEach(item => {
-                        const title = item.querySelector('h5').innerText.toLowerCase();
-                        item.style.display = title.includes(keyword) ? 'block' : 'none';
-                    });
-                }
-            }
-
-            searchBtn.addEventListener('click', filterProducts);
-            searchInput.addEventListener('keyup', filterProducts);
 
             displayItems(currentItems);
         </script>

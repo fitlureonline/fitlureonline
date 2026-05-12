@@ -1,516 +1,998 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-       <meta name="p:domain_verify" content="b46d9306501fecbf256552df3b55dd24"/>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZDWH18EY8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KZDWH18EY8');
-</script>
-        <meta name="verify-admitad" content="c462803e1a" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-        <title>FitLure - Health & Lifestyle Store</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <!-- Main Styles -->
-        <style>
-            /* Global Reset & Spacing */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                background: #f8f9fa;
-                font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            }
-
-            /* Modern Green Button Style - Global with refined spacing */
-            button,
-            .btn,
-            input[type="submit"],
-            input[type="button"] {
-                background: linear-gradient(135deg, #00c853, #00e676) !important;
-                color: #ffffff !important;
-                border: none;
-                padding: 12px 28px;
-                border-radius: 40px;
-                font-size: 15px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 230, 118, 0.25);
-                letter-spacing: 0.3px;
-            }
-
-            button:hover,
-            .btn:hover,
-            input[type="submit"]:hover,
-            input[type="button"]:hover {
-                transform: translateY(-2px) scale(1.02);
-                background: linear-gradient(135deg, #00e676, #00ff95) !important;
-                box-shadow: 0 8px 20px rgba(0, 255, 149, 0.35);
-            }
-
-            button:active,
-            .btn:active {
-                transform: scale(0.97);
-            }
-
-            /* Card styling */
-            .card {
-                border-radius: 20px;
-                overflow: hidden;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                border: none;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-                background: white;
-            }
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            }
-            .card-img-top {
-                height: 200px;
-                object-fit: cover;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            @media (min-width: 768px) {
-                .card-img-top { height: 260px; }
-            }
-            .card-body h5 {
-                font-weight: 700;
-                color: #1e2a3e;
-                margin-bottom: 0.5rem;
-            }
-            .card-footer {
-                background: transparent;
-                border-top: none;
-                padding-bottom: 1.5rem !important;
-            }
-            .btn-outline-dark {
-                background: transparent !important;
-                color: #1f2937 !important;
-                border: 1.5px solid #e2e8f0;
-                box-shadow: none;
-                border-radius: 40px;
-                padding: 8px 20px;
-                font-weight: 500;
-            }
-            .btn-outline-dark:hover {
-                background: linear-gradient(135deg, #00c853, #00e676) !important;
-                color: white !important;
-                border-color: transparent;
-                transform: translateY(-2px);
-            }
-
-            /* Product item base display */
-            .product-item {
-                display: none;
-            }
-
-            /* Responsive grid spacing improvements */
-            .row.gx-3 {
-                --bs-gutter-x: 1.2rem;
-            }
-            @media (max-width: 767px) {
-                .row-cols-2 > * {
-                    flex: 0 0 auto;
-                    width: 50%; 
-                }
-                .container {
-                    padding-left: 16px;
-                    padding-right: 16px;
-                }
-                .card-body {
-                    padding: 1rem !important;
-                }
-            }
-
-            /* SEARCH SECTION - Centered with proper top/bottom margins */
-            .search-section {
-                max-width: 560px;
-                margin: 40px auto 48px auto;
-                padding: 0 16px;
-            }
-            .search-section .input-group {
-                border-radius: 60px;
-                overflow: hidden;
-                box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-                background: white;
-                border: 1px solid #e9ecef;
-                transition: box-shadow 0.2s;
-            }
-            .search-section .input-group:focus-within {
-                box-shadow: 0 8px 22px rgba(0,200,83,0.12);
-                border-color: #00c853;
-            }
-            .search-section .form-control {
-                border: none;
-                padding: 14px 20px;
-                font-size: 1rem;
-                background: white;
-                border-radius: 60px 0 0 60px;
-            }
-            .search-section .form-control:focus {
-                box-shadow: none;
-                outline: none;
-            }
-            .search-section .btn {
-                border-radius: 0 60px 60px 0;
-                padding: 12px 28px;
-                font-weight: 600;
-                margin: 0;
-            }
-
-            /* Products container - Centered and enhanced spacing */
-            #product-container {
-                margin-top: 16px;
-                margin-bottom: 20px;
-                justify-content: center !important;
-                row-gap: 1.8rem;
-            }
-            .col.mb-5 {
-                margin-bottom: 1.8rem !important;
-            }
-
-            /* Load more button styling */
-            .text-center.mt-4 {
-                margin-top: 30px !important;
-                margin-bottom: 50px;
-            }
-            #loadMore {
-                padding: 12px 40px;
-                font-size: 1rem;
-                border-radius: 50px;
-                background: linear-gradient(135deg, #1e2a3e, #2d3e50) !important;
-                box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-            }
-            #loadMore:hover {
-                background: linear-gradient(135deg, #2d3e50, #1e2a3e) !important;
-            }
-
-            /* Hero section extra spacing fix */
-            header.bg-dark {
-                padding: 2rem 0;
-            }
-            .hero-container {
-                max-width: 780px;
-                margin: 0 auto;
-                padding: 20px 24px;
-            }
-            .hero-title {
-                font-size: 42px;
-                font-weight: 800;
-                letter-spacing: -0.3px;
-                color: white;
-                margin-bottom: 20px;
-                line-height: 1.2;
-            }
-            .hero-description {
-                font-size: 18px;
-                color: #d4d4d8;
-                max-width: 620px;
-                margin: 0 auto 28px auto;
-                line-height: 1.5;
-            }
-            .hero-btn {
-                display: inline-block;
-                padding: 12px 34px;
-                background: #00c853;
-                color: white;
-                text-decoration: none;
-                border-radius: 50px;
-                font-weight: 700;
-                transition: 0.2s;
-                box-shadow: 0 4px 12px rgba(0,200,83,0.3);
-            }
-            .hero-btn:hover {
-                background: #00e676;
-                transform: translateY(-2px);
-                color: white;
-            }
-            @media (max-width: 640px) {
-                .hero-title { font-size: 32px; }
-                .hero-description { font-size: 16px; }
-                .search-section { margin: 32px auto 40px auto; }
-            }
-            footer {
-                margin-top: 20px;
-            }
-            /* Fix for duplicate center tags & layout glitches */
-            center {
-                display: block;
-                text-align: center;
-            }
-            /* Brand cursor pointer */
-            .navbar-brand {
-                cursor: pointer;
-                transition: opacity 0.2s;
-            }
-            .navbar-brand:hover {
-                opacity: 0.8;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand fw-bold" id="brandLink" style="cursor:pointer;">🌿 FitLure</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" href="https://fitlure.online/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://fitlureonline.blogspot.com/p/about-us-welcome-our-mission-is-to.html">About</a></li>
-                         <li class="nav-item"><a class="nav-link" href="https://fitlureonline.blogspot.com/p/privacy-policy-privacy-is-our-priority.html">Privacy Policy</a></li>
-                         <li class="nav-item"><a class="nav-link" href="https://fitlureonline.blogspot.com/p/terms-of-service-by-accessing-this.html">TOs</a></li>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="p:domain_verify" content="b46d9306501fecbf256552df3b55dd24"/>
+    <meta name="verify-admitad" content="c462803e1a" />
     
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="https://fitlureonline.blogspot.com/p/us-have-question-or-need-feedback-on.html" role="button" data-bs-toggle="dropdown">Contact</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="https://fitlureonline.blogspot.com/p/affiliate-disclosure-transparency-is.html">Affiliate Disclosure</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KZDWH18EY8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KZDWH18EY8');
+    </script>
+    
+    <!-- SEO Meta Tags -->
+    <title>FitLure - Health, Wellness & Lifestyle Blog</title>
+    <meta name="description" content="Daily health tips, wellness guides, fitness advice, and natural remedies. Latest articles on healthy living.">
+    <meta name="keywords" content="health, wellness, fitness, lifestyle, natural remedies, healthy habits">
+    <meta name="author" content="FitLure">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="FitLure - Health & Wellness Blog">
+    <meta property="og:description" content="Daily health tips, wellness guides, and natural remedies">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fitlure.online">
+    <meta property="og:image" content="https://fitlure.online/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FitLure - Health & Wellness Blog">
+    <meta name="twitter:description" content="Daily health tips and wellness guides">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fitlure.online">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Navbar Styles */
+        .navbar-brand {
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #00c853, #00e676);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+        }
+        
+        /* Green Buttons */
+        .btn-green, .load-more-btn, .category-btn.active {
+            background: linear-gradient(135deg, #00c853, #00e676) !important;
+            color: white !important;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-green:hover, .load-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,200,83,0.3);
+        }
+        
+        /* Search Section */
+        .search-section {
+            max-width: 600px;
+            margin: 40px auto 40px auto;
+            padding: 0 20px;
+        }
+        
+        .search-section .input-group {
+            border-radius: 60px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            background: white;
+        }
+        
+        .search-section .form-control {
+            border: none;
+            padding: 14px 25px;
+            font-size: 1rem;
+        }
+        
+        .search-section .btn {
+            border-radius: 0 60px 60px 0;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #00c853, #00e676) !important;
+            border: none;
+            font-weight: 600;
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .category-btn {
+            background: white !important;
+            color: #2c3e50 !important;
+            border: 2px solid #e0e0e0 !important;
+            padding: 8px 24px !important;
+            border-radius: 40px !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, #00c853, #00e676) !important;
+            color: white !important;
+            border-color: transparent !important;
+        }
+        
+        /* Article Cards */
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .article-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #00c853, #00e676);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #adb5bd;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 25px;
+            border: none;
+        }
+        
+        .modal-full-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        
+        .modal-full-content h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px 0;
+            color: #1a1a2e;
+        }
+        
+        .modal-full-content h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 12px 0;
+        }
+        
+        /* Load More Button */
+        .load-more-btn {
+            padding: 14px 45px !important;
+            font-weight: 700 !important;
+            margin: 20px 0 50px;
+            display: inline-block;
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 50px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #1e2a3e, #2d3e50) !important;
+            padding: 12px 30px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #2d3e50, #1e2a3e) !important;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 0;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            color: #d4d4d8;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 50px;
+        }
+        
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        footer a:hover {
+            color: #00c853;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00c853;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 50px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 32px; }
+            .hero-description { font-size: 16px; }
+            .article-title { font-size: 1.1rem; }
+            .article-img { height: 180px; }
+            .row-cols-2 > * {
+                flex: 0 0 auto;
+                width: 50%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .category-btn { padding: 6px 16px !important; font-size: 12px !important; }
+        }
+        
+        /* Ad Space */
+        .ad-container {
+            text-align: center;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" id="brandLink">🌿 FitLure</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#articles">Articles</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#privacy">Privacy</a></li>
+                <li class="nav-item"><a class="nav-link" href="#terms">Terms</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center py-4">
+        <h1 class="hero-title">🌿 Better Habits. Better Health.</h1>
+        <p class="hero-description">
+            Daily wellness tips, fitness guides, and natural remedies for a healthier lifestyle.
+            Expert advice to help you live your best life.
+        </p>
+    </div>
+</section>
+
+<!-- Search Bar -->
+<div class="search-section">
+    <div class="input-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search articles... (e.g., health, wellness, fitness)">
+        <button class="btn btn-dark" id="searchBtn">🔍 Search</button>
+    </div>
+</div>
+
+<!-- Category Filter -->
+<div class="category-filter" id="categoryFilter">
+    <button class="category-btn active" data-category="all">All</button>
+    <button class="category-btn" data-category="Wellness">Wellness</button>
+    <button class="category-btn" data-category="Fitness">Fitness</button>
+    <button class="category-btn" data-category="Nutrition">Nutrition</button>
+    <button class="category-btn" data-category="Lifestyle">Lifestyle</button>
+</div>
+
+<!-- Articles Container -->
+<div class="container" id="articles">
+    <div class="row g-4" id="articlesContainer">
+        <div class="spinner"></div>
+    </div>
+</div>
+
+<!-- Navigation Buttons (Previous/Next) -->
+<div class="nav-buttons" id="navButtons" style="display: none;">
+    <button class="btn nav-btn" id="prevPageBtn">← Previous 10</button>
+    <button class="btn nav-btn" id="nextPageBtn">Next 10 →</button>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">🌿 FitLure</h5>
+                <p>Your daily destination for health, fitness, and wellness tips. Helping you live a healthier, happier life.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#about" id="aboutLink">About Us</a></li>
+                    <li class="mb-2"><a href="#privacy" id="privacyLink">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#terms" id="termsLink">Terms of Service</a></li>
+                    <li class="mb-2"><a href="#contact" id="contactLink">Contact Us</a></li>
+                    <li class="mb-2"><a href="#disclosure" id="disclosureLink">Affiliate Disclosure</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="fw-bold mb-3">Follow Us</h5>
+                <div class="d-flex gap-3">
+                    <a href="#" class="fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="fs-4"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="fs-4"><i class="bi bi-pinterest"></i></a>
                 </div>
             </div>
-        </nav>
-        
-        <!-- Hero Section -->
-        <header class="bg-dark py-5">
-            <div class="hero-container text-center">
-                <h2 class="hero-title">🌿 Better habits. Better health. Better lifestyle</h2>
-                <p class="hero-description mx-auto">
-                    Helping you stay consistent with fitness, nutrition & healthier daily routines.
-                    Easy-to-follow solutions for building a stronger body and healthier mindset.
-                </p>
-                <a href="#" class="hero-btn">Explore Now</a>
-            </div>
-        </header> 
-        
-        <!-- Search Bar - Fixed margins & search button will work properly -->
-        <div class="search-section">
-            <div class="input-group">
-                <input class="form-control" type="search" id="searchInput" placeholder="Search products here..." aria-label="Search">
-                <button class="btn btn-dark" id="searchBtn" type="button">🔍 Search</button>
-            </div>
         </div>
+        <hr class="my-4" style="border-color: #333;">
+        <div class="text-center">
+            <p class="mb-0">© 2025 FitLure. All rights reserved. | Designed for better health</p>
+        </div>
+    </div>
+</footer>
 
-        <!-- Products Container - Fully centered -->
-        <div class="container px-3 px-lg-4">
-            <div id="product-container" class="row g-4 gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <!-- Product 1 -->
-                <div class="col product-item" data-name="herbal fusion wellness"><div class="card h-100"><img class="card-img-top" src="https://github.com/fitlureonline/fitlureonline/blob/main/assets/1.webp?raw=true" alt="Wellness product" /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Anti-aging Natural Remedies </h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://www.advancedbionutritionals.com/DS24/Advanced-Amino/Muscle-Mass-Loss/HD.htm#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 2 -->
-                <div class="col product-item" data-name="energy booster supplement"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/2.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Supplements for high blood pressure</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://www.advancedbionutritionals.com/DS24/Nitric-Oxide-Supplements/Superhuman-At-70/HD.htm#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 3 -->
-                <div class="col product-item" data-name="green vitality plant"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/3.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Natural solutions for chronic fatigue</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://www.advancedbionutritionals.com/DS24/Advanced-Mitochondrial/Too-Tired-To-Enjoy-It/HD.htm#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 4 -->
-                <div class="col product-item" data-name="omega essentials fish oil"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/4.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Natural remedies for memory loss</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://www.advancedbionutritionals.com/DS24/Advanced-Memory/Nobel-Prize-Winning-Memory-Breakthroughs/HD.htm#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 5 -->
-                <div class="col product-item" data-name="plant protein powder"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/5.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Enhancing sexual performance</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://primeperformpro.com/welcome/#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 6 -->
-                <div class="col product-item" data-name="mindful mood relax"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/6.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Chicago Cop’s shocking health secret</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://wsl.365dailyhealth.com/landing-sale-page1713272576177#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 7 -->
-                <div class="col product-item" data-name="sleep well melatonin"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/7.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Increase sexual pleasure</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://endopeak24.com/d/order-now.php#aff=shredjourney">Learn more →</a></div></div></div>
-                <!-- Product 8 -->
-                <div class="col product-item" data-name="immunity shield vitamin c"><div class="card h-100"><img class="card-img-top" src="https://raw.githubusercontent.com/fitlureonline/fitlureonline/refs/heads/main/assets/8.webp" alt="..." /><div class="card-body p-4 text-center"><h5 class="fw-bolder">Next-generation frequency-based wellness system</h5></div><div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center"><a class="btn btn-outline-dark mt-auto" href="https://www.checkout-ds24.com/redir/649413/shredjourney/">Learn more →</a></div></div></div>
-               
+<!-- Article Modal -->
+<div class="modal fade" id="articleModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <div class="mb-3">
+                    <span class="badge" id="modalCategory" style="background: #00c853;"></span>
+                    <small class="text-muted ms-2" id="modalDate"></small>
+                </div>
+                <div id="modalImage" class="mb-4"></div>
+                <div id="modalContent" class="modal-full-content"></div>
+                
+                <!-- Social Share -->
+                <div class="mt-5 pt-3 border-top">
+                    <h6>Share this article:</h6>
+                    <div class="d-flex gap-2 mt-2">
+                        <button class="btn btn-sm btn-outline-primary" id="shareFacebook"><i class="bi bi-facebook"></i> Facebook</button>
+                        <button class="btn btn-sm btn-outline-info" id="shareTwitter"><i class="bi bi-twitter-x"></i> Twitter</button>
+                        <button class="btn btn-sm btn-outline-success" id="shareWhatsApp"><i class="bi bi-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Load More Button Centered -->
-        <div class="text-center mt-4 mb-5">
-            <button id="loadMore" class="btn btn-dark btn-lg px-5">More Products</button>
-        </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        <footer class="py-4 bg-dark mt-3">
-            <div class="container"><p class="m-0 text-center text-white-50">Copyright &copy; FitLure 2025 | Better Life Better Health</p></div>
-        </footer>
+<script>
+// ============================================
+// GOOGLE SHEETS ARTICLES DATA - YAHAN PASTE KARO
+// ============================================
+// Aapka Google Sheets CSV Link (working)
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vROMPubrhQB5YGFAvBtQCxOnqL_4y4ANVA32FHTE5Mv2fxQd7Cx-6K5NUXoLhbKoq7vDyJNeYBe0XzX/pub?output=csv";
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+// ============================================
+// SAMPLE ARTICLES (Agar sheet se nahi aaye toh ye dikhenge)
+// ============================================
+const SAMPLE_ARTICLES = [
+    {
+        id: 1,
+        title: "10 Morning Habits for Better Health",
+        category: "Wellness",
+        content: "Start your day with these 10 powerful habits. Wake up early, drink water, meditate, exercise, eat a healthy breakfast, plan your day, practice gratitude, read something inspiring, avoid phone first thing, and smile. These habits will transform your health and productivity.",
+        excerpt: "Science-backed morning habits to boost your energy and health",
+        image_url: "",
+        published_date: "2025-05-12"
+    },
+    {
+        id: 2,
+        title: "Natural Remedies for Better Sleep",
+        category: "Wellness",
+        content: "Struggling with sleep? Try these natural remedies: establish a consistent schedule, create a relaxing bedtime routine, avoid screens before bed, try herbal teas like chamomile, use lavender essential oil, practice deep breathing, keep your room dark and cool.",
+        excerpt: "Natural ways to improve your sleep quality without medication",
+        image_url: "",
+        published_date: "2025-05-11"
+    },
+    {
+        id: 3,
+        title: "Beginner's Guide to Home Workouts",
+        category: "Fitness",
+        content: "No gym? No problem! Start with bodyweight exercises: squats, push-ups, lunges, planks, jumping jacks. Do 3 sets of 10-12 reps. Gradually increase intensity. Consistency is key to seeing results.",
+        excerpt: "Effective home workouts for beginners - no equipment needed",
+        image_url: "",
+        published_date: "2025-05-10"
+    },
+    {
+        id: 4,
+        title: "Healthy Meal Prep for Weight Loss",
+        category: "Nutrition",
+        content: "Meal prep saves time and helps with weight loss. Plan your meals, shop strategically, batch cook proteins, chop vegetables, portion into containers, store properly. Sample menu: grilled chicken, quinoa, roasted vegetables.",
+        excerpt: "Simple meal prep strategies for healthy eating all week",
+        image_url: "",
+        published_date: "2025-05-09"
+    },
+    {
+        id: 5,
+        title: "Stress Management Techniques",
+        category: "Lifestyle",
+        content: "Reduce stress with these proven techniques: deep breathing exercises, meditation, regular exercise, adequate sleep, time in nature, talking to friends, limiting caffeine, practicing gratitude, listening to music, journaling.",
+        excerpt: "Effective ways to manage daily stress and anxiety",
+        image_url: "",
+        published_date: "2025-05-08"
+    },
+    {
+        id: 6,
+        title: "Benefits of Drinking More Water",
+        category: "Wellness",
+        content: "Staying hydrated boosts energy, improves skin health, aids digestion, helps weight loss, flushes toxins, prevents headaches, regulates body temperature, supports kidney function, improves mood, enhances brain function.",
+        excerpt: "Why proper hydration is essential for your health",
+        image_url: "",
+        published_date: "2025-05-07"
+    },
+    {
+        id: 7,
+        title: "Yoga for Beginners",
+        category: "Fitness",
+        content: "Start yoga with these basic poses: Mountain Pose, Downward Dog, Cat-Cow, Child's Pose, Warrior I, Tree Pose, Cobra Pose. Practice daily for 15-20 minutes. Focus on breathing and form.",
+        excerpt: "Easy yoga poses to improve flexibility and reduce stress",
+        image_url: "",
+        published_date: "2025-05-06"
+    },
+    {
+        id: 8,
+        title: "Immune Boosting Foods",
+        category: "Nutrition",
+        content: "Strengthen your immune system with these foods: citrus fruits, red bell peppers, broccoli, garlic, ginger, spinach, yogurt, almonds, turmeric, green tea. Eat a rainbow of fruits and vegetables daily.",
+        excerpt: "Top foods that naturally boost your immune system",
+        image_url: "",
+        published_date: "2025-05-05"
+    },
+    {
+        id: 9,
+        title: "Digital Detox Guide",
+        category: "Lifestyle",
+        content: "Take a break from screens: set phone-free hours, turn off notifications, use grayscale mode, schedule outdoor time, read physical books, have face-to-face conversations, pursue offline hobbies, practice mindfulness.",
+        excerpt: "How to reduce screen time and improve mental health",
+        image_url: "",
+        published_date: "2025-05-04"
+    },
+    {
+        id: 10,
+        title: "Heart Health Tips",
+        category: "Wellness",
+        content: "Keep your heart healthy: exercise regularly, eat heart-healthy foods, maintain healthy weight, don't smoke, limit alcohol, manage stress, get enough sleep, control cholesterol, monitor blood pressure.",
+        excerpt: "Essential tips for maintaining a healthy heart",
+        image_url: "",
+        published_date: "2025-05-03"
+    },
+    {
+        id: 11,
+        title: "Strength Training Benefits",
+        category: "Fitness",
+        content: "Strength training builds muscle, burns fat, improves bone density, boosts metabolism, enhances posture, prevents injuries, increases energy, improves sleep, reduces anxiety, builds confidence.",
+        excerpt: "Why you should include strength training in your routine",
+        image_url: "",
+        published_date: "2025-05-02"
+    },
+    {
+        id: 12,
+        title: "Healthy Snack Ideas",
+        category: "Nutrition",
+        content: "Nutritious snacks: apple with peanut butter, Greek yogurt with berries, hummus with vegetables, trail mix, hard-boiled eggs, cottage cheese, rice cakes with avocado, smoothies, roasted chickpeas, banana with almond butter.",
+        excerpt: "Delicious and healthy snacks for energy throughout the day",
+        image_url: "",
+        published_date: "2025-05-01"
+    }
+];
+
+// ============================================
+// GLOBAL VARIABLES
+// ============================================
+let allArticles = [];
+let currentPage = 1;
+const articlesPerPage = 10;
+let currentCategory = "all";
+let currentSearch = "";
+let totalPages = 0;
+
+// ============================================
+// FETCH ARTICLES FROM GOOGLE SHEETS
+// ============================================
+async function fetchArticles() {
+    try {
+        showLoading(true);
         
-        <script>
-            (function() {
-                // Get all product items
-                const items = [...document.querySelectorAll('.product-item')];
-                const loadMoreBtn = document.querySelector('#loadMore');
-                const searchInput = document.querySelector('#searchInput');
-                const searchBtn = document.querySelector('#searchBtn');
-                const brandLink = document.querySelector('#brandLink');
+        // Try to fetch from Google Sheets
+        const response = await fetch(GOOGLE_SHEET_CSV_URL);
+        const csvText = await response.text();
+        
+        // Parse CSV
+        const rows = csvText.split(/\r?\n/);
+        
+        if (rows.length > 1 && rows[0].includes('title')) {
+            // Parse headers
+            const headers = parseCSVRow(rows[0]);
+            
+            allArticles = [];
+            
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].trim() === "") continue;
                 
-                // Responsive initial load config
-                const isMobile = window.innerWidth < 768;
-                let currentItems = isMobile ? 4 : 8;
-                const itemsPerClick = 8;
+                const values = parseCSVRow(rows[i]);
+                if (values.length < 3) continue;
                 
-                // State tracking
-                let isSearchActive = false;
-                let lastSearchKeyword = '';
+                const article = {
+                    id: parseInt(values[0]) || i,
+                    title: values[1] || "",
+                    category: values[2] || "General",
+                    content: values[3] || "",
+                    excerpt: values[4] || (values[3] ? values[3].substring(0, 150) + "..." : ""),
+                    image_url: values[5] || "",
+                    published_date: values[9] || new Date().toISOString().split('T')[0],
+                    status: values[10] || "published"
+                };
                 
-                // Helper: Display products based on count (pagination mode)
-                function displayItems(count) {
-                    const visibleCount = Math.min(count, items.length);
-                    items.forEach((item, index) => {
-                        if (index < visibleCount) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    // Update button text
-                    if (visibleCount >= items.length) {
-                        loadMoreBtn.innerText = "Show Less";
-                    } else {
-                        loadMoreBtn.innerText = "More Products";
+                if (article.status === "published" && article.title) {
+                    allArticles.push(article);
+                }
+            }
+        }
+        
+        // If no articles from sheet, use sample
+        if (allArticles.length === 0) {
+            allArticles = [...SAMPLE_ARTICLES];
+        }
+        
+        // Add more sample articles to reach 200
+        for (let i = allArticles.length + 1; i <= 200; i++) {
+            allArticles.push({
+                id: i,
+                title: `Health Tip #${i}: ${getRandomTip()}`,
+                category: getRandomCategory(),
+                content: getRandomContent(),
+                excerpt: getRandomExcerpt(),
+                image_url: "",
+                published_date: new Date(Date.now() - (i * 86400000)).toISOString().split('T')[0],
+                status: "published"
+            });
+        }
+        
+        // Sort by date (newest first)
+        allArticles.sort((a, b) => new Date(b.published_date) - new Date(a.published_date));
+        
+        // Apply filters and display
+        applyFilters();
+        
+    } catch (error) {
+        console.error("Error fetching from sheet, using sample data:", error);
+        // Use sample articles
+        allArticles = [...SAMPLE_ARTICLES];
+        
+        // Add more articles
+        for (let i = allArticles.length + 1; i <= 200; i++) {
+            allArticles.push({
+                id: i,
+                title: `Health Article #${i}: ${getRandomTip()}`,
+                category: getRandomCategory(),
+                content: getRandomContent(),
+                excerpt: getRandomExcerpt(),
+                image_url: "",
+                published_date: new Date(Date.now() - (i * 86400000)).toISOString().split('T')[0],
+                status: "published"
+            });
+        }
+        
+        allArticles.sort((a, b) => new Date(b.published_date) - new Date(a.published_date));
+        applyFilters();
+    } finally {
+        showLoading(false);
+    }
+}
+
+function parseCSVRow(row) {
+    const result = [];
+    let inQuotes = false;
+    let current = '';
+    
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current);
+    
+    return result.map(s => s.replace(/^"|"$/g, '').trim());
+}
+
+function getRandomTip() {
+    const tips = [
+        "Stay Hydrated", "Exercise Daily", "Get Enough Sleep", "Eat More Vegetables",
+        "Practice Mindfulness", "Take Regular Breaks", "Maintain Good Posture",
+        "Wash Hands Regularly", "Limit Processed Foods", "Spend Time Outdoors"
+    ];
+    return tips[Math.floor(Math.random() * tips.length)];
+}
+
+function getRandomCategory() {
+    const categories = ["Wellness", "Fitness", "Nutrition", "Lifestyle"];
+    return categories[Math.floor(Math.random() * categories.length)];
+}
+
+function getRandomContent() {
+    return "This is a detailed article about health and wellness. It contains valuable information to help improve your lifestyle. Regular exercise, proper nutrition, adequate sleep, and stress management are key components of a healthy life. Start making small changes today for better tomorrow.";
+}
+
+function getRandomExcerpt() {
+    return "Learn about this important health topic and how it can improve your daily life. Simple tips and practical advice included.";
+}
+
+// ============================================
+// FILTER AND DISPLAY FUNCTIONS
+// ============================================
+function applyFilters() {
+    let filtered = [...allArticles];
+    
+    // Apply category filter
+    if (currentCategory !== "all") {
+        filtered = filtered.filter(a => a.category === currentCategory);
+    }
+    
+    // Apply search filter
+    if (currentSearch) {
+        filtered = filtered.filter(a => 
+            a.title.toLowerCase().includes(currentSearch) || 
+            (a.content && a.content.toLowerCase().includes(currentSearch))
+        );
+    }
+    
+    // Calculate total pages
+    totalPages = Math.ceil(filtered.length / articlesPerPage);
+    if (totalPages === 0) totalPages = 1;
+    
+    // Ensure current page is valid
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+    
+    // Get current page articles
+    const start = (currentPage - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const pageArticles = filtered.slice(start, end);
+    
+    displayArticles(pageArticles);
+    updateNavButtons(totalPages, currentPage);
+}
+
+function displayArticles(articles) {
+    const container = document.getElementById('articlesContainer');
+    
+    if (articles.length === 0) {
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <h3>🔍 No articles found</h3>
+                <p>Try different search terms or browse all categories</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = articles.map(article => `
+        <div class="col-md-6 col-lg-4">
+            <div class="article-card" onclick='showArticle(${JSON.stringify(article).replace(/'/g, "&#39;")})'>
+                <div style="position: relative;">
+                    ${article.image_url ? 
+                        `<img src="${article.image_url}" class="article-img" alt="${article.title}" onerror="this.src='https://via.placeholder.com/400x250?text=Health+Article'">` : 
+                        `<div class="article-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-newspaper" style="font-size: 3rem; color: white;"></i>
+                         </div>`
                     }
-                }
-                
-                // Reset all items to show based on currentItems (respect pagination)
-                function resetToPagination() {
-                    isSearchActive = false;
-                    lastSearchKeyword = '';
-                    if (searchInput) searchInput.value = '';
-                    loadMoreBtn.style.display = 'inline-block';
-                    displayItems(currentItems);
-                }
-                
-                // Core search filter function (works on button click AND keyup)
-                function performSearch() {
-                    const keyword = searchInput.value.trim().toLowerCase();
-                    lastSearchKeyword = keyword;
-                    
-                    if (keyword === "") {
-                        // Empty search: revert to pagination mode
-                        resetToPagination();
-                        return;
-                    }
-                    
-                    // Search mode active
-                    isSearchActive = true;
-                    loadMoreBtn.style.display = 'none';
-                    
-                    let matchFound = false;
-                    items.forEach(item => {
-                        // Get product name from h5 element (original code uses h5)
-                        const titleElem = item.querySelector('h5');
-                        if (!titleElem) return;
-                        const productName = titleElem.innerText.toLowerCase();
-                        const isMatch = productName.includes(keyword);
-                        if (isMatch) matchFound = true;
-                        item.style.display = isMatch ? 'block' : 'none';
-                    });
-                    
-                    // Optional: if no matches, products will be hidden - that's fine
-                    if (!matchFound && items.length > 0) {
-                        // silently handle no results, all hidden
-                    }
-                }
-                
-                // Load More / Show Less toggle
-                function toggleLoadMore() {
-                    // If search is active, ignore load more button clicks (button already hidden but safety)
-                    if (isSearchActive) return;
-                    
-                    if (loadMoreBtn.innerText === "Show Less") {
-                        // Reset to initial count based on screen size
-                        const newIsMobile = window.innerWidth < 768;
-                        currentItems = newIsMobile ? 4 : 8;
-                        displayItems(currentItems);
-                    } else {
-                        // Load more items
-                        let newCount = currentItems + itemsPerClick;
-                        if (newCount >= items.length) {
-                            newCount = items.length;
-                        }
-                        currentItems = newCount;
-                        displayItems(currentItems);
-                    }
-                }
-                
-                // Brand click: refresh page OR reset to original state (no full reload, just reset everything)
-                function handleBrandClick(e) {
-                    e.preventDefault();
-                    // Reset search input, clear search mode, reset pagination to initial state
-                    if (searchInput) searchInput.value = '';
-                    // Reset currentItems based on current screen size
-                    const mobileNow = window.innerWidth < 768;
-                    currentItems = mobileNow ? 4 : 8;
-                    // Reset any active search flag
-                    isSearchActive = false;
-                    lastSearchKeyword = '';
-                    loadMoreBtn.style.display = 'inline-block';
-                    displayItems(currentItems);
-                    // Optional: smooth scroll to top for better UX
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-                
-                // Event Listeners
-                if (searchBtn) {
-                    searchBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        performSearch();
-                    });
-                }
-                
-                if (searchInput) {
-                    searchInput.addEventListener('keyup', function(e) {
-                        // Trigger search on Enter key as well for good UX
-                        if (e.key === 'Enter') {
-                            performSearch();
-                        } else {
-                            // For live typing we still use same filter but we also need to handle backspace till empty
-                            performSearch();
-                        }
-                    });
-                }
-                
-                if (loadMoreBtn) {
-                    loadMoreBtn.addEventListener('click', toggleLoadMore);
-                }
-                
-                if (brandLink) {
-                    brandLink.addEventListener('click', handleBrandClick);
-                }
-                
-                // Handle window resize: adjust currentItems if not in search mode
-                window.addEventListener('resize', function() {
-                    if (!isSearchActive) {
-                        const newIsMobile = window.innerWidth < 768;
-                        const expectedInitial = newIsMobile ? 4 : 8;
-                        // If currentItems is same as expectedInitial no change needed,
-                        // but if show less mode active and resize changes layout, re-evaluate
-                        if (loadMoreBtn.innerText !== "Show Less") {
-                            if (currentItems !== expectedInitial) {
-                                currentItems = expectedInitial;
-                                displayItems(currentItems);
-                            }
-                        } else {
-                            // If "Show Less" mode, keep all items visible even on resize, no change.
-                            // But to maintain consistency if all items shown, do nothing.
-                            if (currentItems >= items.length) {
-                                // keep all shown
-                            } else {
-                                currentItems = expectedInitial;
-                                displayItems(currentItems);
-                            }
-                        }
-                    }
-                });
-                
-                // Initial display
-                displayItems(currentItems);
-            })();
-        </script>
-    </body>
+                    <span class="article-category">${article.category || "Health"}</span>
+                </div>
+                <div class="p-3">
+                    <h5 class="article-title">${article.title}</h5>
+                    <p class="article-excerpt">${article.excerpt || (article.content ? article.content.substring(0, 120) + "..." : "Read this informative article about health and wellness.")}</p>
+                    <div class="article-meta">
+                        <span><i class="bi bi-calendar3"></i> ${formatDate(article.published_date)}</span>
+                        <span><i class="bi bi-clock"></i> ${getReadTime(article.content)} min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showArticle(article) {
+    const modal = new bootstrap.Modal(document.getElementById('articleModal'));
+    
+    // Update meta tags for SEO
+    document.title = `${article.title} | FitLure`;
+    updateMetaTags(article);
+    
+    // Update modal content
+    document.getElementById('modalTitle').innerHTML = article.title;
+    document.getElementById('modalCategory').innerHTML = article.category || "Health";
+    document.getElementById('modalDate').innerHTML = formatDate(article.published_date);
+    
+    // Image
+    const imageHtml = article.image_url ? 
+        `<img src="${article.image_url}" class="img-fluid rounded" alt="${article.title}" style="width: 100%; border-radius: 15px;">` : 
+        `<div class="bg-light rounded p-5 text-center">
+            <i class="bi bi-newspaper" style="font-size: 4rem; color: #00c853;"></i>
+         </div>`;
+    document.getElementById('modalImage').innerHTML = imageHtml;
+    
+    // Format content
+    let formattedContent = article.content || "Full article content will appear here. Check back soon for more health tips!";
+    formattedContent = formattedContent
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/\n/g, '<br>')
+        .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
+        .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>');
+    
+    document.getElementById('modalContent').innerHTML = `<p>${formattedContent}</p>`;
+    
+    modal.show();
+    
+    // Setup share buttons
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(article.title);
+    
+    document.getElementById('shareFacebook').onclick = () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    };
+    document.getElementById('shareTwitter').onclick = () => {
+        window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, '_blank');
+    };
+    document.getElementById('shareWhatsApp').onclick = () => {
+        window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
+    };
+}
+
+function updateMetaTags(article) {
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute('content', article.excerpt || article.title);
+    }
+}
+
+function updateNavButtons(total, current) {
+    const navDiv = document.getElementById('navButtons');
+    const prevBtn = document.getElementById('prevPageBtn');
+    const nextBtn = document.getElementById('nextPageBtn');
+    
+    if (total > 1) {
+        navDiv.style.display = 'flex';
+        prevBtn.disabled = (current === 1);
+        nextBtn.disabled = (current === total);
+    } else {
+        navDiv.style.display = 'none';
+    }
+}
+
+// Navigation functions
+function goToPrevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function goToNextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+function formatDate(dateString) {
+    if (!dateString) return "Recent";
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function getReadTime(content) {
+    if (!content) return 2;
+    const wordsPerMinute = 200;
+    const words = content.split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / wordsPerMinute));
+}
+
+function showLoading(show) {
+    const container = document.getElementById('articlesContainer');
+    if (show) {
+        container.innerHTML = '<div class="spinner"></div>';
+    }
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+document.getElementById('searchBtn').addEventListener('click', () => {
+    currentSearch = document.getElementById('searchInput').value.toLowerCase();
+    currentPage = 1;
+    applyFilters();
+});
+
+document.getElementById('searchInput').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        currentSearch = document.getElementById('searchInput').value.toLowerCase();
+        currentPage = 1;
+        applyFilters();
+    }
+});
+
+document.getElementById('prevPageBtn').addEventListener('click', goToPrevPage);
+document.getElementById('nextPageBtn').addEventListener('click', goToNextPage);
+
+// Category filter
+document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.getAttribute('data-category');
+        currentPage = 1;
+        currentSearch = document.getElementById('searchInput').value.toLowerCase();
+        applyFilters();
+    });
+});
+
+// Brand click reset
+document.getElementById('brandLink').addEventListener('click', () => {
+    currentCategory = 'all';
+    currentSearch = '';
+    currentPage = 1;
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-category') === 'all') btn.classList.add('active');
+    });
+    applyFilters();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Modal pages setup for footer links - in-page popup
+function setupModalPage(title, content) {
+    const modal = new bootstrap.Modal(document.getElementById('articleModal'));
+    document.getElementById('modalTitle').innerHTML = title;
+    document.getElementById('modalCategory').innerHTML = "Information";
+    document.getElementById('modalDate').innerHTML = formatDate(new Date().toISOString());
+    document.getElementById('modalImage').innerHTML = `<div class="bg-light rounded p-5 text-center"><i class="bi bi-info-circle" style="font-size: 4rem; color: #00c853;"></i></div>`;
+    document.getElementById('modalContent').innerHTML = `<p>${content}</p>`;
+    modal.show();
+}
+
+document.getElementById('aboutLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    setupModalPage("About FitLure", "FitLure is dedicated to helping you achieve better health and wellness. Our mission is to provide reliable, evidence-based information about fitness, nutrition, and healthy lifestyle choices. We believe that small daily changes lead to lasting improvements in health and happiness.");
+});
+
+document.getElementById('privacyLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    setupModalPage("Privacy Policy", "We value your privacy. This website collects basic analytics data to improve user experience. We do not share personal information with third parties. For questions about our privacy practices, please contact us.");
+});
+
+document.getElementById('termsLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    setupModalPage("Terms of Service", "By using this website, you agree to our terms. The information provided is for educational purposes only and not medical advice. Always consult healthcare professionals before making health decisions.");
+});
+
+document.getElementById('contactLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    setupModalPage("Contact Us", "For inquiries, feedback, or collaboration opportunities, please reach out via email: contact@fitlure.online");
+});
+
+document.getElementById('disclosureLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    setupModalPage("Affiliate Disclosure", "Some links on this site are affiliate links. We may earn a commission if you make a purchase through these links, at no extra cost to you. This helps support our content creation.");
+});
+
+// Initialize
+fetchArticles();
+</script>
+
+</body>
 </html>

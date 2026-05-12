@@ -15,37 +15,16 @@
         gtag('config', 'G-KZDWH18EY8');
     </script>
     
-    <!-- SEO Meta Tags -->
-    <title>FitLure - Health, Wellness & Lifestyle Blog</title>
-    <meta name="description" content="Daily health tips, wellness guides, fitness advice, and natural remedies. Latest articles on healthy living across 14+ categories.">
-    <meta name="keywords" content="health, wellness, fitness, nutrition, weight loss, mental health, sleep, habits, productivity, mindset, body care, skin care, motivation, men's health, women's health">
-    <meta name="author" content="FitLure">
-    <meta name="robots" content="index, follow">
+    <title>FitLure - Health & Lifestyle Blog</title>
+    <meta name="description" content="Daily health tips, wellness guides, and fitness advice">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="FitLure - Health & Wellness Blog">
-    <meta property="og:description" content="Daily health tips, wellness guides, and natural remedies across 14+ categories">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fitlure.online">
-    <meta property="og:image" content="https://fitlure.online/og-image.jpg">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FitLure - Health & Wellness Blog">
-    <meta name="twitter:description" content="Daily health tips and wellness guides">
-    
-    <link rel="canonical" href="https://fitlure.online">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        body { background: #f8f9fa; font-family: 'Segoe UI', sans-serif; }
         
         .navbar-brand {
             cursor: pointer;
@@ -57,7 +36,6 @@
             color: transparent !important;
         }
         
-        /* Green Navigation Buttons */
         .nav-btn {
             background: linear-gradient(135deg, #00c853, #00e676) !important;
             color: white !important;
@@ -73,12 +51,8 @@
             box-shadow: 0 8px 20px rgba(0,200,83,0.3);
         }
         
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        /* Category Buttons */
         .category-btn {
             background: white !important;
             color: #2c3e50 !important;
@@ -97,7 +71,6 @@
             border-color: transparent !important;
         }
         
-        /* Search Section */
         .search-section {
             max-width: 600px;
             margin: 40px auto 30px auto;
@@ -117,11 +90,6 @@
             font-size: 1rem;
         }
         
-        .search-section .form-control:focus {
-            outline: none;
-            box-shadow: none;
-        }
-        
         .search-section .btn {
             border-radius: 0 60px 60px 0;
             padding: 14px 30px;
@@ -130,7 +98,6 @@
             font-weight: 600;
         }
         
-        /* Category Filter Container */
         .category-filter {
             display: flex;
             gap: 10px;
@@ -142,7 +109,6 @@
             overflow-y: auto;
         }
         
-        /* Article Cards */
         .article-card {
             background: white;
             border-radius: 20px;
@@ -162,7 +128,7 @@
             height: 220px;
             object-fit: cover;
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -199,26 +165,15 @@
         .article-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             font-size: 13px;
             color: #adb5bd;
             border-top: 1px solid #eee;
             padding-top: 12px;
         }
         
-        /* Modal Styles */
-        .modal-content {
-            border-radius: 25px;
-            border: none;
-        }
+        .modal-content { border-radius: 25px; border: none; }
+        .modal-full-content { font-size: 1.05rem; line-height: 1.8; color: #2c3e50; }
         
-        .modal-full-content {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #2c3e50;
-        }
-        
-        /* Navigation Buttons Container */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -237,7 +192,6 @@
             font-size: 14px;
         }
         
-        /* No Results Section */
         .no-results {
             text-align: center;
             padding: 60px 20px;
@@ -258,7 +212,6 @@
             padding: 15px;
             cursor: pointer;
             transition: all 0.2s;
-            height: 100%;
             text-align: center;
         }
         
@@ -267,28 +220,14 @@
             transform: translateY(-3px);
         }
         
-        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             padding: 60px 0;
         }
         
-        .hero-title {
-            font-size: 48px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 20px;
-        }
+        .hero-title { font-size: 48px; font-weight: 800; color: white; margin-bottom: 20px; }
+        .hero-description { font-size: 18px; color: #d4d4d8; max-width: 650px; margin: 0 auto; line-height: 1.6; }
         
-        .hero-description {
-            font-size: 18px;
-            color: #d4d4d8;
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        /* Footer */
         footer {
             background: #1a1a2e;
             color: white;
@@ -296,16 +235,8 @@
             margin-top: 50px;
         }
         
-        footer a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-        
-        footer a:hover {
-            color: #00c853;
-        }
+        footer a { color: #aaa; text-decoration: none; cursor: pointer; }
+        footer a:hover { color: #00c853; }
         
         .spinner {
             width: 50px;
@@ -324,15 +255,9 @@
         
         @media (max-width: 768px) {
             .hero-title { font-size: 32px; }
-            .hero-description { font-size: 16px; }
             .article-title { font-size: 1.1rem; }
             .article-img { height: 180px; }
             .row-cols-2 > * { flex: 0 0 auto; width: 50%; }
-            .category-btn { padding: 5px 12px !important; font-size: 11px !important; }
-        }
-        
-        @media (max-width: 576px) {
-            .category-filter { max-height: 100px; }
         }
     </style>
 </head>
@@ -358,25 +283,22 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section" id="heroSection">
+<section class="hero-section">
     <div class="container text-center py-4">
         <h1 class="hero-title">🌿 Better Habits. Better Health.</h1>
-        <p class="hero-description">
-            Daily wellness tips, fitness guides, and natural remedies across 14+ categories.
-            Expert advice to help you live your best life.
-        </p>
+        <p class="hero-description">Daily wellness tips, fitness guides, and natural remedies across 14+ categories.</p>
     </div>
 </section>
 
-<!-- Search Bar -->
-<div class="search-section" id="searchSection">
+<!-- Search -->
+<div class="search-section">
     <div class="input-group">
-        <input type="text" class="form-control" id="searchInput" placeholder="Search articles... (e.g., weight loss, fitness, mental health)">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search articles...">
         <button class="btn btn-dark" id="searchBtn">🔍 Search</button>
     </div>
 </div>
 
-<!-- Category Filter - 14 Categories -->
+<!-- Categories -->
 <div class="category-filter" id="categoryFilter">
     <button class="category-btn active" data-category="all">All</button>
     <button class="category-btn" data-category="Weight Loss">⚖️ Weight Loss</button>
@@ -396,17 +318,17 @@
 </div>
 
 <!-- Articles Container -->
-<div class="container" id="articlesContainerParent">
+<div class="container">
     <div class="row g-4" id="articlesContainer">
         <div class="spinner"></div>
     </div>
 </div>
 
-<!-- Navigation Buttons -->
+<!-- Navigation -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
-    <button class="btn nav-btn" id="prevPageBtn">← Previous Page</button>
+    <button class="btn nav-btn" id="prevPageBtn">← Previous</button>
     <span class="page-info" id="pageInfo"></span>
-    <button class="btn nav-btn" id="nextPageBtn">Next Page →</button>
+    <button class="btn nav-btn" id="nextPageBtn">Next →</button>
 </div>
 
 <!-- Footer -->
@@ -415,7 +337,7 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <h5 class="fw-bold mb-3">🌿 FitLure</h5>
-                <p>Your daily destination for health, fitness, and wellness tips. Helping you live a healthier, happier life.</p>
+                <p>Your daily destination for health, fitness, and wellness.</p>
             </div>
             <div class="col-md-4 mb-4">
                 <h5 class="fw-bold mb-3">Quick Links</h5>
@@ -433,7 +355,6 @@
                     <a href="#" class="fs-4"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="fs-4"><i class="bi bi-twitter-x"></i></a>
                     <a href="#" class="fs-4"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="fs-4"><i class="bi bi-pinterest"></i></a>
                 </div>
             </div>
         </div>
@@ -444,7 +365,7 @@
     </div>
 </footer>
 
-<!-- Article Modal -->
+<!-- Modal -->
 <div class="modal fade" id="articleModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
@@ -459,9 +380,8 @@
                 </div>
                 <div id="modalImage" class="mb-4"></div>
                 <div id="modalContent" class="modal-full-content"></div>
-                
                 <div class="mt-5 pt-3 border-top">
-                    <h6>Share this article:</h6>
+                    <h6>Share:</h6>
                     <div class="d-flex gap-2 mt-2">
                         <button class="btn btn-sm btn-outline-primary" id="shareFacebook"><i class="bi bi-facebook"></i> Facebook</button>
                         <button class="btn btn-sm btn-outline-info" id="shareTwitter"><i class="bi bi-twitter-x"></i> Twitter</button>
@@ -477,8 +397,9 @@
 
 <script>
 // ============================================
-// GOOGLE SHEETS CONFIGURATION
+// 🔥 APNA GOOGLE SHEET CSV URL YAHAN PASTE KARO
 // ============================================
+// Ye link aapke sheet ka hai - agar change karna ho toh yahan paste karo
 const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vROMPubrhQB5YGFAvBtQCxOnqL_4y4ANVA32FHTE5Mv2fxQd7Cx-6K5NUXoLhbKoq7vDyJNeYBe0XzX/pub?output=csv";
 
 // ============================================
@@ -492,54 +413,84 @@ let currentSearch = "";
 let totalPages = 0;
 
 // ============================================
-// FETCH ARTICLES FROM GOOGLE SHEETS
+// FETCH ARTICLES - Sheet se data leke aayega
 // ============================================
-async function fetchArticles() {
+async function loadArticles() {
     try {
         showLoading(true);
         
         const response = await fetch(GOOGLE_SHEET_CSV_URL);
         const csvText = await response.text();
         
+        console.log("Data received from sheet"); // Debug
+        
         const rows = csvText.split(/\r?\n/);
         
-        if (rows.length > 1 && rows[0].includes('title')) {
+        if (rows.length < 2) {
             allArticles = [];
+            displayNoArticlesMessage();
+            return;
+        }
+        
+        allArticles = [];
+        
+        // Row 0 se column names le lo
+        const headers = parseCSVRow(rows[0]);
+        
+        // Find column indexes
+        let idIndex = 0, titleIndex = 1, categoryIndex = 2, contentIndex = 3;
+        let excerptIndex = 4, imageIndex = 5, dateIndex = 9, statusIndex = 10;
+        
+        for(let i = 0; i < headers.length; i++) {
+            let h = headers[i].toLowerCase();
+            if(h === 'id') idIndex = i;
+            if(h === 'title') titleIndex = i;
+            if(h === 'category') categoryIndex = i;
+            if(h === 'content') contentIndex = i;
+            if(h === 'excerpt') excerptIndex = i;
+            if(h === 'image_url') imageIndex = i;
+            if(h === 'published_date') dateIndex = i;
+            if(h === 'status') statusIndex = i;
+        }
+        
+        for (let i = 1; i < rows.length; i++) {
+            if (rows[i].trim() === "") continue;
             
-            for (let i = 1; i < rows.length; i++) {
-                if (rows[i].trim() === "") continue;
-                
-                const values = parseCSVRow(rows[i]);
-                if (values.length < 3) continue;
-                
-                const article = {
-                    id: parseInt(values[0]) || i,
-                    title: values[1] || "",
-                    category: values[2] || "General",
-                    content: values[3] || "Content will be added soon.",
-                    excerpt: values[4] || (values[3] ? values[3].substring(0, 120) + "..." : "Read this informative article."),
-                    image_url: values[5] || "",
-                    published_date: values[9] || new Date().toISOString().split('T')[0],
-                    status: values[10] || "published"
-                };
-                
-                if (article.status === "published" && article.title) {
-                    allArticles.push(article);
-                }
+            const values = parseCSVRow(rows[i]);
+            if (values.length < 2) continue;
+            
+            const status = values[statusIndex] || "published";
+            if (status !== "published") continue;
+            
+            const article = {
+                id: values[idIndex] || i,
+                title: values[titleIndex] || "",
+                category: values[categoryIndex] || "General",
+                content: values[contentIndex] || "Content will be added soon.",
+                excerpt: values[excerptIndex] || (values[contentIndex] ? values[contentIndex].substring(0, 120) + "..." : "Click to read full article"),
+                image_url: values[imageIndex] || "",
+                published_date: values[dateIndex] || new Date().toISOString().split('T')[0]
+            };
+            
+            if (article.title) {
+                allArticles.push(article);
             }
         }
         
+        console.log("Loaded " + allArticles.length + " articles");
+        
+        // Sort by date (newest first)
+        allArticles.sort((a, b) => new Date(b.published_date) - new Date(a.published_date));
+        
         if (allArticles.length === 0) {
-            allArticles = [];
+            displayNoArticlesMessage();
+        } else {
+            applyFilters();
         }
         
-        allArticles.sort((a, b) => new Date(b.published_date) - new Date(a.published_date));
-        applyFilters();
-        
     } catch (error) {
-        console.error("Error:", error);
-        allArticles = [];
-        applyFilters();
+        console.error("Error loading articles:", error);
+        displayErrorMessage();
     } finally {
         showLoading(false);
     }
@@ -565,9 +516,39 @@ function parseCSVRow(row) {
     return result.map(s => s.replace(/^"|"$/g, '').trim());
 }
 
-// ============================================
-// FILTER AND DISPLAY FUNCTIONS
-// ============================================
+function displayNoArticlesMessage() {
+    const container = document.getElementById('articlesContainer');
+    container.innerHTML = `
+        <div class="col-12">
+            <div class="no-results">
+                <i class="bi bi-database" style="font-size: 3rem; color: #00c853;"></i>
+                <h3 class="mt-3">📝 No Articles Yet</h3>
+                <p>Add your first article in Google Sheet:</p>
+                <ol style="text-align: left; display: inline-block;">
+                    <li>Open your Google Sheet</li>
+                    <li>Add row with: title, category, content, published_date</li>
+                    <li>Set status = "published"</li>
+                    <li>Save and refresh this page</li>
+                </ol>
+            </div>
+        </div>
+    `;
+}
+
+function displayErrorMessage() {
+    const container = document.getElementById('articlesContainer');
+    container.innerHTML = `
+        <div class="col-12">
+            <div class="no-results">
+                <i class="bi bi-exclamation-triangle" style="font-size: 3rem; color: #ff5722;"></i>
+                <h3 class="mt-3">⚠️ Connection Issue</h3>
+                <p>Make sure your Google Sheet is published as CSV</p>
+                <button class="btn btn-success mt-3" onclick="location.reload()">Try Again</button>
+            </div>
+        </div>
+    `;
+}
+
 function applyFilters() {
     let filtered = [...allArticles];
     
@@ -578,7 +559,7 @@ function applyFilters() {
     if (currentSearch) {
         filtered = filtered.filter(a => 
             a.title.toLowerCase().includes(currentSearch) || 
-            (a.content && a.content.toLowerCase().includes(currentSearch))
+            a.content.toLowerCase().includes(currentSearch)
         );
     }
     
@@ -604,13 +585,13 @@ function displayArticles(articles, totalArticles) {
             const randomSuggestions = [...allArticles].sort(() => 0.5 - Math.random()).slice(0, 4);
             suggestionsHtml = `
                 <div class="suggestions-section">
-                    <h5 class="text-center mb-4">📚 You might also like these articles:</h5>
+                    <h5 class="text-center mb-4">📚 You might also like:</h5>
                     <div class="row g-3">
                         ${randomSuggestions.map(article => `
                             <div class="col-md-3 col-6">
                                 <div class="suggestion-card" onclick='showArticle(${JSON.stringify(article).replace(/'/g, "&#39;")})'>
                                     <i class="bi bi-file-text" style="font-size: 1.5rem; color: #00c853;"></i>
-                                    <p class="mt-2 mb-0 small fw-bold">${article.title.substring(0, 50)}${article.title.length > 50 ? '...' : ''}</p>
+                                    <p class="mt-2 mb-0 small fw-bold">${article.title.substring(0, 40)}${article.title.length > 40 ? '...' : ''}</p>
                                 </div>
                             </div>
                         `).join('')}
@@ -624,7 +605,7 @@ function displayArticles(articles, totalArticles) {
                 <div class="no-results">
                     <i class="bi bi-search" style="font-size: 3rem; color: #00c853;"></i>
                     <h3 class="mt-3">🔍 No articles found</h3>
-                    <p class="text-muted">We couldn't find any articles matching "${currentSearch || 'your search'}"</p>
+                    <p>No results for "${currentSearch || 'your search'}"</p>
                     <button class="btn btn-outline-success mt-2" id="clearSearchBtn">Clear Search</button>
                     ${suggestionsHtml}
                 </div>
@@ -648,19 +629,17 @@ function displayArticles(articles, totalArticles) {
             <div class="article-card" onclick='showArticle(${JSON.stringify(article).replace(/'/g, "&#39;")})'>
                 <div style="position: relative;">
                     ${article.image_url ? 
-                        `<img src="${article.image_url}" class="article-img" alt="${article.title}" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'article-img\' style=\'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;\'><i class=\'bi bi-newspaper\' style=\'font-size: 3rem; color: white;\'></i></div>'">` : 
-                        `<div class="article-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="bi bi-newspaper" style="font-size: 3rem; color: white;"></i>
-                         </div>`
+                        `<img src="${article.image_url}" class="article-img" alt="${article.title}" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'article-img\' style=\'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\'><i class=\'bi bi-newspaper\' style=\'font-size: 3rem; color: white;\'></i></div>'">` : 
+                        `<div class="article-img"><i class="bi bi-newspaper" style="font-size: 3rem; color: white;"></i></div>`
                     }
                     <span class="article-category">${article.category || "Health"}</span>
                 </div>
                 <div class="p-3">
                     <h5 class="article-title">${article.title}</h5>
-                    <p class="article-excerpt">${article.excerpt || (article.content ? article.content.substring(0, 100) + "..." : "Click to read full article")}</p>
+                    <p class="article-excerpt">${article.excerpt}</p>
                     <div class="article-meta">
                         <span><i class="bi bi-calendar3"></i> ${formatDate(article.published_date)}</span>
-                        <span><i class="bi bi-clock"></i> ${getReadTime(article.content)} min read</span>
+                        <span><i class="bi bi-clock"></i> ${getReadTime(article.content)} min</span>
                     </div>
                 </div>
             </div>
@@ -670,7 +649,6 @@ function displayArticles(articles, totalArticles) {
 
 function showArticle(article) {
     const modal = new bootstrap.Modal(document.getElementById('articleModal'));
-    
     document.title = `${article.title} | FitLure`;
     
     document.getElementById('modalTitle').innerHTML = article.title;
@@ -678,21 +656,17 @@ function showArticle(article) {
     document.getElementById('modalDate').innerHTML = formatDate(article.published_date);
     
     const imageHtml = article.image_url ? 
-        `<img src="${article.image_url}" class="img-fluid rounded" alt="${article.title}" style="width: 100%; border-radius: 15px;" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'bg-light rounded p-5 text-center\'><i class=\'bi bi-newspaper\' style=\'font-size: 4rem; color: #00c853;\'></i></div>'">` : 
-        `<div class="bg-light rounded p-5 text-center">
-            <i class="bi bi-newspaper" style="font-size: 4rem; color: #00c853;"></i>
-         </div>`;
+        `<img src="${article.image_url}" class="img-fluid rounded" style="width: 100%; border-radius: 15px;" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'bg-light rounded p-5 text-center\'><i class=\'bi bi-newspaper\' style=\'font-size: 4rem; color: #00c853;\'></i></div>'">` : 
+        `<div class="bg-light rounded p-5 text-center"><i class="bi bi-newspaper" style="font-size: 4rem; color: #00c853;"></i></div>`;
     document.getElementById('modalImage').innerHTML = imageHtml;
     
-    let formattedContent = article.content || "Content will be added soon. Please check back later.";
-    formattedContent = formattedContent.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+    let formattedContent = article.content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
     document.getElementById('modalContent').innerHTML = `<p>${formattedContent}</p>`;
     
     modal.show();
     
     const url = encodeURIComponent(window.location.href);
     const title = encodeURIComponent(article.title);
-    
     document.getElementById('shareFacebook').onclick = () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
     document.getElementById('shareTwitter').onclick = () => window.open(`https://twitter.com/intent/tweet?text=${title}&url=${url}`, '_blank');
     document.getElementById('shareWhatsApp').onclick = () => window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
@@ -713,35 +687,25 @@ function updateNavButtons(total, current) {
 }
 
 function goToPrevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        applyFilters();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (currentPage > 1) { currentPage--; applyFilters(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
 function goToNextPage() {
-    if (currentPage < totalPages) {
-        currentPage++;
-        applyFilters();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (currentPage < totalPages) { currentPage++; applyFilters(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
 function formatDate(dateString) {
     if (!dateString) return "Recent";
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch(e) { return dateString; }
 }
 
 function getReadTime(content) {
     if (!content) return 2;
-    const wordsPerMinute = 200;
     const words = content.split(/\s+/).length;
-    return Math.max(1, Math.ceil(words / wordsPerMinute));
+    return Math.max(1, Math.ceil(words / 200));
 }
 
 function showLoading(show) {
@@ -751,14 +715,12 @@ function showLoading(show) {
     }
 }
 
-// ============================================
-// PAGE FUNCTIONS (About, Privacy, Terms, Contact)
-// ============================================
-function showPage(title, content) {
+// Page functions
+function showInfoPage(title, content) {
     const modal = new bootstrap.Modal(document.getElementById('articleModal'));
     document.getElementById('modalTitle').innerHTML = title;
-    document.getElementById('modalCategory').innerHTML = "Information";
-    document.getElementById('modalDate').innerHTML = formatDate(new Date().toISOString());
+    document.getElementById('modalCategory').innerHTML = "Info";
+    document.getElementById('modalDate').innerHTML = formatDate(new Date());
     document.getElementById('modalImage').innerHTML = `<div class="bg-light rounded p-5 text-center"><i class="bi bi-info-circle" style="font-size: 4rem; color: #00c853;"></i></div>`;
     document.getElementById('modalContent').innerHTML = `<div class="p-3">${content}</div>`;
     modal.show();
@@ -778,69 +740,18 @@ function resetToHome() {
 }
 
 // Page Contents
-const aboutContent = `
-    <h2>About FitLure</h2>
-    <p>FitLure is dedicated to helping you achieve better health and wellness. Our mission is to provide reliable, evidence-based information about fitness, nutrition, and healthy lifestyle choices.</p>
-    <p>We believe that small daily changes lead to lasting improvements in health and happiness. Our team is committed to bringing you the latest research and practical tips to support your wellness journey.</p>
-    <h3>Our Vision</h3>
-    <p>To become a trusted resource for health and wellness information, empowering people worldwide to live healthier, more fulfilling lives.</p>
-    <h3>What We Offer</h3>
-    <ul><li>Daily health tips and wellness guides</li><li>Expert advice on fitness and nutrition</li><li>Natural remedies and lifestyle solutions</li><li>Evidence-based information you can trust</li></ul>
-`;
+const aboutContent = `<h2>About FitLure</h2><p>FitLure is dedicated to health and wellness. We provide reliable information about fitness, nutrition, and healthy lifestyle choices.</p><p>Small daily changes lead to lasting health improvements.</p>`;
+const privacyContent = `<h2>Privacy Policy</h2><p>We value your privacy. We collect basic analytics to improve your experience. We don't share personal information.</p>`;
+const termsContent = `<h2>Terms of Service</h2><p>Information is educational, not medical advice. Consult healthcare professionals for health decisions.</p>`;
+const contactContent = `<h2>Contact Us</h2><p>Email: contact@fitlure.online</p><p>Response within 24-48 hours.</p>`;
+const disclosureContent = `<h2>Affiliate Disclosure</h2><p>We may earn commissions on purchases made through affiliate links. This supports our content.</p>`;
 
-const privacyContent = `
-    <h2>Privacy Policy</h2>
-    <p>At FitLure, we value your privacy. This policy outlines how we collect, use, and protect your personal information.</p>
-    <h3>Information We Collect</h3>
-    <p>We collect basic analytics data to improve user experience. This includes page views, time spent on site, and general location data.</p>
-    <h3>Cookies</h3>
-    <p>We use cookies to enhance your browsing experience. You can disable cookies in your browser settings.</p>
-    <h3>Third-Party Links</h3>
-    <p>Our site may contain links to external websites. We are not responsible for their privacy practices.</p>
-    <h3>Contact Us</h3>
-    <p>For questions about this privacy policy, please contact us.</p>
-`;
-
-const termsContent = `
-    <h2>Terms of Service</h2>
-    <p>By using this website, you agree to these terms and conditions.</p>
-    <h3>Medical Disclaimer</h3>
-    <p>The information provided on FitLure is for educational purposes only and is not medical advice. Always consult with a qualified healthcare professional before making any health decisions.</p>
-    <h3>User Responsibilities</h3>
-    <p>You agree to use this site responsibly and not to misuse any content or features.</p>
-    <h3>Changes to Terms</h3>
-    <p>We reserve the right to update these terms at any time. Continued use of the site constitutes acceptance of updated terms.</p>
-`;
-
-const contactContent = `
-    <h2>Contact Us</h2>
-    <p>We'd love to hear from you! Reach out with questions, feedback, or collaboration opportunities.</p>
-    <h3>Email</h3>
-    <p><a href="mailto:contact@fitlure.online">contact@fitlure.online</a></p>
-    <h3>Response Time</h3>
-    <p>We typically respond within 24-48 hours.</p>
-    <h3>Collaborations</h3>
-    <p>For partnership inquiries, please email us with "Collaboration" in the subject line.</p>
-`;
-
-const disclosureContent = `
-    <h2>Affiliate Disclosure</h2>
-    <p>FitLure participates in affiliate marketing programs. This means we may earn commissions on purchases made through links on our site.</p>
-    <h3>Transparency</h3>
-    <p>We only recommend products and services we genuinely believe will provide value to our readers. Our content is never influenced by affiliate partnerships.</p>
-    <h3>Your Support</h3>
-    <p>When you purchase through our affiliate links, you help support our content creation at no additional cost to you. Thank you for your support!</p>
-`;
-
-// ============================================
-// EVENT LISTENERS
-// ============================================
+// Event Listeners
 document.getElementById('searchBtn').addEventListener('click', () => {
     currentSearch = document.getElementById('searchInput').value.toLowerCase();
     currentPage = 1;
     applyFilters();
 });
-
 document.getElementById('searchInput').addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
         currentSearch = document.getElementById('searchInput').value.toLowerCase();
@@ -848,10 +759,12 @@ document.getElementById('searchInput').addEventListener('keyup', (e) => {
         applyFilters();
     }
 });
-
 document.getElementById('prevPageBtn').addEventListener('click', goToPrevPage);
 document.getElementById('nextPageBtn').addEventListener('click', goToNextPage);
+document.getElementById('brandLink').addEventListener('click', resetToHome);
+document.getElementById('homeLink').addEventListener('click', resetToHome);
 
+// Categories
 document.querySelectorAll('.category-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
@@ -862,25 +775,26 @@ document.querySelectorAll('.category-btn').forEach(btn => {
     });
 });
 
-// Brand and Home links
-document.getElementById('brandLink').addEventListener('click', resetToHome);
-document.getElementById('homeLink').addEventListener('click', resetToHome);
+// Header links
+document.getElementById('aboutNavLink').addEventListener('click', () => showInfoPage('About FitLure', aboutContent));
+document.getElementById('privacyNavLink').addEventListener('click', () => showInfoPage('Privacy Policy', privacyContent));
+document.getElementById('termsNavLink').addEventListener('click', () => showInfoPage('Terms of Service', termsContent));
+document.getElementById('contactNavLink').addEventListener('click', () => showInfoPage('Contact Us', contactContent));
 
-// Header Navigation Links
-document.getElementById('aboutNavLink').addEventListener('click', () => showPage('About FitLure', aboutContent));
-document.getElementById('privacyNavLink').addEventListener('click', () => showPage('Privacy Policy', privacyContent));
-document.getElementById('termsNavLink').addEventListener('click', () => showPage('Terms of Service', termsContent));
-document.getElementById('contactNavLink').addEventListener('click', () => showPage('Contact Us', contactContent));
+// Footer links
+document.getElementById('aboutFooterLink').addEventListener('click', () => showInfoPage('About FitLure', aboutContent));
+document.getElementById('privacyFooterLink').addEventListener('click', () => showInfoPage('Privacy Policy', privacyContent));
+document.getElementById('termsFooterLink').addEventListener('click', () => showInfoPage('Terms of Service', termsContent));
+document.getElementById('contactFooterLink').addEventListener('click', () => showInfoPage('Contact Us', contactContent));
+document.getElementById('disclosureLink').addEventListener('click', () => showInfoPage('Affiliate Disclosure', disclosureContent));
 
-// Footer Navigation Links
-document.getElementById('aboutFooterLink').addEventListener('click', () => showPage('About FitLure', aboutContent));
-document.getElementById('privacyFooterLink').addEventListener('click', () => showPage('Privacy Policy', privacyContent));
-document.getElementById('termsFooterLink').addEventListener('click', () => showPage('Terms of Service', termsContent));
-document.getElementById('contactFooterLink').addEventListener('click', () => showPage('Contact Us', contactContent));
-document.getElementById('disclosureLink').addEventListener('click', () => showPage('Affiliate Disclosure', disclosureContent));
+// Auto-refresh every 60 seconds (so sheet update turant dikhe)
+setInterval(() => {
+    loadArticles();
+}, 60000);
 
-// Initialize
-fetchArticles();
+// Initial load
+loadArticles();
 </script>
 
 </body>

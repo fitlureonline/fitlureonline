@@ -6,7 +6,6 @@
     <meta name="p:domain_verify" content="b46d9306501fecbf256552df3b55dd24"/>
     <meta name="verify-admitad" content="c462803e1a" />
     
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KZDWH18EY8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -17,7 +16,7 @@
     
     <title>FitLure - Health & Lifestyle Blog</title>
     <meta name="description" content="Daily health tips, wellness guides, and fitness advice">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -263,7 +262,6 @@
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand" id="brandLink" style="cursor:pointer;">🌿 FitLure</a>
@@ -282,7 +280,6 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
 <section class="hero-section">
     <div class="container text-center py-4">
         <h1 class="hero-title">🌿 Better Habits. Better Health.</h1>
@@ -290,7 +287,6 @@
     </div>
 </section>
 
-<!-- Search -->
 <div class="search-section">
     <div class="input-group">
         <input type="text" class="form-control" id="searchInput" placeholder="Search articles...">
@@ -298,7 +294,6 @@
     </div>
 </div>
 
-<!-- Categories -->
 <div class="category-filter" id="categoryFilter">
     <button class="category-btn active" data-category="all">All</button>
     <button class="category-btn" data-category="Weight Loss">⚖️ Weight Loss</button>
@@ -317,21 +312,18 @@
     <button class="category-btn" data-category="Quick Tips">💡 Quick Tips</button>
 </div>
 
-<!-- Articles Container -->
 <div class="container">
     <div class="row g-4" id="articlesContainer">
         <div class="spinner"></div>
     </div>
 </div>
 
-<!-- Navigation -->
 <div class="nav-buttons" id="navButtons" style="display: none;">
     <button class="btn nav-btn" id="prevPageBtn">← Previous</button>
     <span class="page-info" id="pageInfo"></span>
     <button class="btn nav-btn" id="nextPageBtn">Next →</button>
 </div>
 
-<!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
@@ -365,7 +357,6 @@
     </div>
 </footer>
 
-<!-- Modal -->
 <div class="modal fade" id="articleModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
@@ -397,14 +388,10 @@
 
 <script>
 // ============================================
-// 🔥 APNA GOOGLE SHEET CSV URL YAHAN PASTE KARO
+// GOOGLE SHEET CSV URL
 // ============================================
-// Ye link aapke sheet ka hai - agar change karna ho toh yahan paste karo
 const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vROMPubrhQB5YGFAvBtQCxOnqL_4y4ANVA32FHTE5Mv2fxQd7Cx-6K5NUXoLhbKoq7vDyJNeYBe0XzX/pub?output=csv";
 
-// ============================================
-// GLOBAL VARIABLES
-// ============================================
 let allArticles = [];
 let currentPage = 1;
 const articlesPerPage = 10;
@@ -412,17 +399,27 @@ let currentCategory = "all";
 let currentSearch = "";
 let totalPages = 0;
 
-// ============================================
-// FETCH ARTICLES - Sheet se data leke aayega
-// ============================================
+// Generate excerpt from content
+function generateExcerpt(content) {
+    if (!content) return "Read this informative article about health and wellness.";
+    let text = content.replace(/<[^>]*>/g, '');
+    let excerpt = text.substring(0, 150);
+    if (text.length > 150) excerpt += "...";
+    return excerpt;
+}
+
+// Generate SEO keywords
+function generateKeywords(title, category) {
+    let words = title.toLowerCase().split(' ').slice(0, 5);
+    return [...words, category.toLowerCase(), 'health', 'wellness', 'tips'].join(', ');
+}
+
 async function loadArticles() {
     try {
         showLoading(true);
         
         const response = await fetch(GOOGLE_SHEET_CSV_URL);
         const csvText = await response.text();
-        
-        console.log("Data received from sheet"); // Debug
         
         const rows = csvText.split(/\r?\n/);
         
@@ -434,24 +431,27 @@ async function loadArticles() {
         
         allArticles = [];
         
-        // Row 0 se column names le lo
+        // Get headers from first row
         const headers = parseCSVRow(rows[0]);
         
-        // Find column indexes
-        let idIndex = 0, titleIndex = 1, categoryIndex = 2, contentIndex = 3;
-        let excerptIndex = 4, imageIndex = 5, dateIndex = 9, statusIndex = 10;
+        // Find column indexes (case insensitive)
+        let idIdx = -1, titleIdx = -1, catIdx = -1, contentIdx = -1;
+        let imgIdx = -1, dateIdx = -1, statusIdx = -1;
         
         for(let i = 0; i < headers.length; i++) {
-            let h = headers[i].toLowerCase();
-            if(h === 'id') idIndex = i;
-            if(h === 'title') titleIndex = i;
-            if(h === 'category') categoryIndex = i;
-            if(h === 'content') contentIndex = i;
-            if(h === 'excerpt') excerptIndex = i;
-            if(h === 'image_url') imageIndex = i;
-            if(h === 'published_date') dateIndex = i;
-            if(h === 'status') statusIndex = i;
+            let h = headers[i].toLowerCase().trim();
+            if(h === 'id') idIdx = i;
+            if(h === 'title') titleIdx = i;
+            if(h === 'category') catIdx = i;
+            if(h === 'content') contentIdx = i;
+            if(h === 'image_url') imgIdx = i;
+            if(h === 'published_date') dateIdx = i;
+            if(h === 'status') statusIdx = i;
         }
+        
+        // Debug log
+        console.log("Headers found:", headers);
+        console.log("Indexes - title:", titleIdx, "category:", catIdx, "content:", contentIdx);
         
         for (let i = 1; i < rows.length; i++) {
             if (rows[i].trim() === "") continue;
@@ -459,27 +459,43 @@ async function loadArticles() {
             const values = parseCSVRow(rows[i]);
             if (values.length < 2) continue;
             
-            const status = values[statusIndex] || "published";
+            // Check status
+            let status = "published";
+            if (statusIdx >= 0 && values[statusIdx]) {
+                status = values[statusIdx].toLowerCase();
+            }
             if (status !== "published") continue;
             
-            const article = {
-                id: values[idIndex] || i,
-                title: values[titleIndex] || "",
-                category: values[categoryIndex] || "General",
-                content: values[contentIndex] || "Content will be added soon.",
-                excerpt: values[excerptIndex] || (values[contentIndex] ? values[contentIndex].substring(0, 120) + "..." : "Click to read full article"),
-                image_url: values[imageIndex] || "",
-                published_date: values[dateIndex] || new Date().toISOString().split('T')[0]
-            };
+            // Get values
+            let title = titleIdx >= 0 ? values[titleIdx] : (values[1] || "");
+            let category = catIdx >= 0 ? values[catIdx] : (values[2] || "General");
+            let content = contentIdx >= 0 ? values[contentIdx] : (values[3] || "");
+            let imageUrl = imgIdx >= 0 ? values[imgIdx] : "";
+            let pubDate = dateIdx >= 0 ? values[dateIdx] : new Date().toISOString().split('T')[0];
             
-            if (article.title) {
-                allArticles.push(article);
-            }
+            if (!title) continue;
+            
+            let excerpt = generateExcerpt(content);
+            let seoTitle = title + " | FitLure Health Guide";
+            let metaDesc = excerpt;
+            let keywords = generateKeywords(title, category);
+            
+            allArticles.push({
+                id: i,
+                title: title,
+                category: category,
+                content: content,
+                excerpt: excerpt,
+                seo_title: seoTitle,
+                meta_description: metaDesc,
+                keywords: keywords,
+                image_url: imageUrl,
+                published_date: pubDate
+            });
         }
         
         console.log("Loaded " + allArticles.length + " articles");
         
-        // Sort by date (newest first)
         allArticles.sort((a, b) => new Date(b.published_date) - new Date(a.published_date));
         
         if (allArticles.length === 0) {
@@ -489,7 +505,7 @@ async function loadArticles() {
         }
         
     } catch (error) {
-        console.error("Error loading articles:", error);
+        console.error("Error:", error);
         displayErrorMessage();
     } finally {
         showLoading(false);
@@ -523,13 +539,12 @@ function displayNoArticlesMessage() {
             <div class="no-results">
                 <i class="bi bi-database" style="font-size: 3rem; color: #00c853;"></i>
                 <h3 class="mt-3">📝 No Articles Yet</h3>
-                <p>Add your first article in Google Sheet:</p>
-                <ol style="text-align: left; display: inline-block;">
-                    <li>Open your Google Sheet</li>
-                    <li>Add row with: title, category, content, published_date</li>
-                    <li>Set status = "published"</li>
-                    <li>Save and refresh this page</li>
-                </ol>
+                <p>In Google Sheet, add these columns in Row 1:</p>
+                <div style="background: #f0f0f0; padding: 15px; border-radius: 10px; display: inline-block; text-align: left;">
+                    <code><strong>id | title | category | content | image_url | published_date | status</strong></code>
+                </div>
+                <p class="mt-3">Then add your article in Row 2 and refresh.</p>
+                <p class="text-muted">Example: <br>1 | I Lost 20 Pounds | Fitness | Full article... | (optional) | 2025-05-12 | published</p>
             </div>
         </div>
     `;
@@ -572,11 +587,11 @@ function applyFilters() {
     const end = start + articlesPerPage;
     const pageArticles = filtered.slice(start, end);
     
-    displayArticles(pageArticles, filtered.length);
+    displayArticles(pageArticles);
     updateNavButtons(totalPages, currentPage);
 }
 
-function displayArticles(articles, totalArticles) {
+function displayArticles(articles) {
     const container = document.getElementById('articlesContainer');
     
     if (articles.length === 0) {
@@ -629,10 +644,10 @@ function displayArticles(articles, totalArticles) {
             <div class="article-card" onclick='showArticle(${JSON.stringify(article).replace(/'/g, "&#39;")})'>
                 <div style="position: relative;">
                     ${article.image_url ? 
-                        `<img src="${article.image_url}" class="article-img" alt="${article.title}" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'article-img\' style=\'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\'><i class=\'bi bi-newspaper\' style=\'font-size: 3rem; color: white;\'></i></div>'">` : 
+                        `<img src="${article.image_url}" class="article-img" alt="${article.title}" onerror="this.src=''; this.parentElement.innerHTML='<div class=\'article-img\'><i class=\'bi bi-newspaper\' style=\'font-size: 3rem; color: white;\'></i></div>'">` : 
                         `<div class="article-img"><i class="bi bi-newspaper" style="font-size: 3rem; color: white;"></i></div>`
                     }
-                    <span class="article-category">${article.category || "Health"}</span>
+                    <span class="article-category">${article.category}</span>
                 </div>
                 <div class="p-3">
                     <h5 class="article-title">${article.title}</h5>
@@ -649,10 +664,10 @@ function displayArticles(articles, totalArticles) {
 
 function showArticle(article) {
     const modal = new bootstrap.Modal(document.getElementById('articleModal'));
-    document.title = `${article.title} | FitLure`;
+    document.title = article.seo_title;
     
     document.getElementById('modalTitle').innerHTML = article.title;
-    document.getElementById('modalCategory').innerHTML = article.category || "Health";
+    document.getElementById('modalCategory').innerHTML = article.category;
     document.getElementById('modalDate').innerHTML = formatDate(article.published_date);
     
     const imageHtml = article.image_url ? 
@@ -715,7 +730,6 @@ function showLoading(show) {
     }
 }
 
-// Page functions
 function showInfoPage(title, content) {
     const modal = new bootstrap.Modal(document.getElementById('articleModal'));
     document.getElementById('modalTitle').innerHTML = title;
@@ -739,14 +753,12 @@ function resetToHome() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Page Contents
 const aboutContent = `<h2>About FitLure</h2><p>FitLure is dedicated to health and wellness. We provide reliable information about fitness, nutrition, and healthy lifestyle choices.</p><p>Small daily changes lead to lasting health improvements.</p>`;
 const privacyContent = `<h2>Privacy Policy</h2><p>We value your privacy. We collect basic analytics to improve your experience. We don't share personal information.</p>`;
 const termsContent = `<h2>Terms of Service</h2><p>Information is educational, not medical advice. Consult healthcare professionals for health decisions.</p>`;
 const contactContent = `<h2>Contact Us</h2><p>Email: contact@fitlure.online</p><p>Response within 24-48 hours.</p>`;
 const disclosureContent = `<h2>Affiliate Disclosure</h2><p>We may earn commissions on purchases made through affiliate links. This supports our content.</p>`;
 
-// Event Listeners
 document.getElementById('searchBtn').addEventListener('click', () => {
     currentSearch = document.getElementById('searchInput').value.toLowerCase();
     currentPage = 1;
@@ -764,7 +776,6 @@ document.getElementById('nextPageBtn').addEventListener('click', goToNextPage);
 document.getElementById('brandLink').addEventListener('click', resetToHome);
 document.getElementById('homeLink').addEventListener('click', resetToHome);
 
-// Categories
 document.querySelectorAll('.category-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
@@ -775,25 +786,17 @@ document.querySelectorAll('.category-btn').forEach(btn => {
     });
 });
 
-// Header links
 document.getElementById('aboutNavLink').addEventListener('click', () => showInfoPage('About FitLure', aboutContent));
 document.getElementById('privacyNavLink').addEventListener('click', () => showInfoPage('Privacy Policy', privacyContent));
 document.getElementById('termsNavLink').addEventListener('click', () => showInfoPage('Terms of Service', termsContent));
 document.getElementById('contactNavLink').addEventListener('click', () => showInfoPage('Contact Us', contactContent));
-
-// Footer links
 document.getElementById('aboutFooterLink').addEventListener('click', () => showInfoPage('About FitLure', aboutContent));
 document.getElementById('privacyFooterLink').addEventListener('click', () => showInfoPage('Privacy Policy', privacyContent));
 document.getElementById('termsFooterLink').addEventListener('click', () => showInfoPage('Terms of Service', termsContent));
 document.getElementById('contactFooterLink').addEventListener('click', () => showInfoPage('Contact Us', contactContent));
 document.getElementById('disclosureLink').addEventListener('click', () => showInfoPage('Affiliate Disclosure', disclosureContent));
 
-// Auto-refresh every 60 seconds (so sheet update turant dikhe)
-setInterval(() => {
-    loadArticles();
-}, 60000);
-
-// Initial load
+setInterval(() => { loadArticles(); }, 60000);
 loadArticles();
 </script>
 

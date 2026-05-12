@@ -49,7 +49,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2025 FitLure | All rights reserved</p>
+    <p>&copy; 2026 FitLure | All rights reserved</p>
 </footer>
 
 <script>
@@ -76,13 +76,7 @@ async function loadArticles() {
     } catch(error) {
         console.error("Error:", error);
         document.getElementById('articlesContainer').innerHTML = `
-            <div style="text-align: center; padding: 50px;">
-                <h2>⚠️ Setup Required</h2>
-                <p>1. Go to GitHub and create a repository named: <strong>fitlure-blog</strong></p>
-                <p>2. In this code, change <strong>YOUR_USERNAME</strong> to your GitHub username</p>
-                <p>3. Go to <strong>Issues</strong> tab and create a new issue with label "article"</p>
-                <p>4. Wait 1 minute and refresh</p>
-            </div>
+            
         `;
     }
 }
